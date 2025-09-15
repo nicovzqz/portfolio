@@ -1445,3 +1445,29 @@ audio
   font-size: 1rem;
   font-weight: bold;
 }
+
+.audio-player {
+  background: #222;
+  color: #fff;
+  padding: 20px;
+  width: 350px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+}
+button {
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+}
+input[type="range"] {
+  flex: 1;
+  accent-color: #0f0;
+}
