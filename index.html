@@ -40,9 +40,9 @@
                     <path fill="url(#gradient-2)" d="M446.8,383.6c0-0.1,0-0.2,0-0.3c0-0.8-0.1-1.6-0.1-2.5c-0.6-19.8-1.9-66.1-45.3-80.9c-0.3-0.1-0.7-0.2-1-0.3
   			c-45.1-11.5-82.6-37.5-83-37.8c-6.1-4.3-14.5-2.8-18.8,3.3c-4.3,6.1-2.8,14.5,3.3,18.8c1.7,1.2,41.5,28.9,91.3,41.7
   			c23.3,8.3,25.9,33.2,26.6,56c0,0.9,0,1.7,0.1,2.5c0.1,9-0.5,22.9-2.1,30.9c-16.2,9.2-79.7,41-176.3,41
-  			c-96.2,0-160.1-31.9-176.4-41.1c-1.6-8-2.3-21.9-2.1-30.9c0-0.8,0.1-1.6,0.1-2.5c0.7-22.8,3.3-47.7,26.6-56
-  			c49.8-12.8,89.6-40.6,91.3-41.7c6.1-4.3,7.6-12.7,3.3-18.8c-4.3-6.1-12.7-7.6-18.8-3.3c-0.4,0.3-37.7,26.3-83,37.8
-  			c-0.4,0.1-0.7,0.2-1,0.3c-43.4,14.9-44.7,61.2-45.3,80.9c0,0.9,0,1.7-0.1,2.5c0,0.1,0,0.2,0,0.3c-0.1,5.2-0.2,31.9,5.1,45.3
+  		    c-96.2,0-160.1-31.9-176.4-41.1c-1.6-8-2.3-21.9-2.1-30.9c0-0.8,0.1-1.6,0.1-2.5c0.7-22.8,3.3-47.7,26.6-56
+  		    c49.8-12.8,89.6-40.6,91.3-41.7c6.1-4.3,7.6-12.7,3.3-18.8c-4.3-6.1-12.7-7.6-18.8-3.3c-0.4,0.3-37.7,26.3-83,37.8
+  		    c-0.4,0.1-0.7,0.2-1,0.3c-43.4,14.9-44.7,61.2-45.3,80.9c0,0.9,0,1.7-0.1,2.5c0,0.1,0,0.2,0,0.3c-0.1,5.2-0.2,31.9,5.1,45.3
   			c1,2.6,2.8,4.8,5.2,6.3c3,2,74.9,47.8,195.2,47.8s192.2-45.9,195.2-47.8c2.3-1.5,4.2-3.7,5.2-6.3
   			C447,415.5,446.9,388.8,446.8,383.6z"/></g>
             <defs><linearGradient id="gradient-1" x1="0" y1="0" x2="80%" y2="80%">
@@ -86,16 +86,24 @@
                                                                                         </a>
                                                                                     </div>
                                                                                     </section>
-                                                                                        <section class="contact" id="contact"><h2 class="contact__heading section-heading">Contact</h2>
-                                                                                            <p class="contact__text">¿Tienes alguna pregunta o quieres que trabajemos juntos? Déjame tus datos y te responderé lo antes posible...</p><form class="contact__form" action="https://formspree.io/f/xdoprgpv" method="POST">
-                                                                                                <input class="contact__form-name" name="name" placeholder="Name"/> 
-                                                                                                <input class="contact__form-email" type="email" name="_replyto" placeholder="Email"/>
-                                                                                                <textarea class="contact__form-message" name="message" placeholder="Message"></textarea>
-                                                                                                <div class="contact__form-error-submit"><div class="form-error"><div class="form-error__name">Please enter your name.</div>
-                                                                                                <div class="form-error__email">Please enter a valid email.</div><div class="form-error__msg">Please enter a message.</div></div>
-                                                                                                <button type="button" class="contact__form-submit-2 project__live-2" id="form-submit">Submit</button>
-                                                                                                </div> </form>
-                                                                                                </section>
+                                                                                        <!-- Contenedor para contact e imagen lado a lado -->
+                                                                                        <div class="contact-image-container">
+                                                                                            <section class="contact" id="contact"><h2 class="contact__heading section-heading">Contact</h2>
+                                                                                                <p class="contact__text">¿Tienes alguna pregunta o quieres que trabajemos juntos? Déjame tus datos y te responderé lo antes posible...</p><form class="contact__form" action="https://formspree.io/f/xdoprgpv" method="POST">
+                                                                                                    <input class="contact__form-name" name="name" placeholder="Name"/> 
+                                                                                                    <input class="contact__form-email" type="email" name="_replyto" placeholder="Email"/>
+                                                                                                    <textarea class="contact__form-message" name="message" placeholder="Message"></textarea>
+                                                                                                    <div class="contact__form-error-submit"><div class="form-error"><div class="form-error__name">Please enter your name.</div>
+                                                                                                    <div class="form-error__email">Please enter a valid email.</div><div class="form-error__msg">Please enter a message.</div></div>
+                                                                                                    <button type="button" class="contact__form-submit-2 project__live-2" id="form-submit">Submit</button>
+                                                                                                    </div> </form>
+                                                                                                    </section>
+                                                                                                    
+                                                                                                    <!-- Imagen mb.gif a la derecha del contact -->
+                                                                                                    <div class="floating-image">
+                                                                                                        <img src="fotos/mb.gif" alt="MB GIF" loading="eager" decoding="auto">
+                                                                                                    </div>
+                                                                                        </div>
                                                                                                 
                                                                                                 <footer class="footer">
                                                                                                     <a href="#hero"><div class="return-home"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><title></title>
@@ -107,14 +115,12 @@
                                                                                                     </a>
                                                                                                         
                                                                                                         
-                                                                                                        <a href="mailto:vazquezcarlosnicolas@gmail.com" target="_blank"><div class="socials__email"><img src="fotos/mail.png" alt=""/></div>
+                                                                                                        <a href="https://drive.google.com/file/d/1ZDePUmC2VazPR5c4j929wR-WU3EmDkQ9/view?usp=sharing" target="_blank"><div class="socials__email"><img src="fotos/mail.png" alt=""/></div>
                                                                                                             
                                                                                                         <a href="https://www.linkedin.com/in/nicolas-vazquez-38419a245/" target="_blank">
                                                                                                             <div class="socials__email"><img src="fotos/lin.png".png" alt=""/>
                                                                                                         </div></a>
         </a></div><p class="copyright">NICOLAS VAZQUEZ ©2025</p>
-    
-    
     
   <body>
     <div class="audio-player">
