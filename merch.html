@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merch - CHAOS REBELS</title>
+    <title>Merch - Asociacion Ilicita</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Black+Ops+One&family=Rubik+Distressed:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,7 +14,7 @@
     <header class="header">
         <nav class="navbar">
             <div class="nav-brand">
-                <h1>CHAOS REBELS</h1>
+                <h1>Asociacion Ilicita</h1>
                 <span class="subtitle">PUNK ROCK BAND</span>
             </div>
             <ul class="nav-menu">
@@ -372,10 +372,41 @@
                 <div class="cart-total">
                     <strong>Total: $<span id="cartTotal">0</span></strong>
                 </div>
-                <button class="checkout-btn" id="checkoutBtn">
-                    <i class="fas fa-credit-card"></i>
-                    PROCEDER AL PAGO
-                </button>
+                <div class="payment-methods">
+                    <h3>ELEGÍ TU MÉTODO DE PAGO:</h3>
+                    <div class="wallet-buttons">
+                        <button class="wallet-btn mercadopago" data-wallet="mercadopago">
+                            <i class="fas fa-wallet"></i>
+                            <span>Mercado Pago</span>
+                        </button>
+                        <button class="wallet-btn uala" data-wallet="uala">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Ualá</span>
+                        </button>
+                        <button class="wallet-btn cuenta-dni" data-wallet="cuentadni">
+                            <i class="fas fa-id-card"></i>
+                            <span>Cuenta DNI</span>
+                        </button>
+                        <button class="wallet-btn modo" data-wallet="modo">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>MODO</span>
+                        </button>
+                        <button class="wallet-btn naranja-x" data-wallet="naranjax">
+                            <i class="fas fa-fire"></i>
+                            <span>Naranja X</span>
+                        </button>
+                        <button class="wallet-btn personal-pay" data-wallet="personalpay">
+                            <i class="fas fa-phone"></i>
+                            <span>Personal Pay</span>
+                        </button>
+                    </div>
+                    <div class="traditional-payment">
+                        <button class="checkout-btn traditional" id="checkoutBtn">
+                            <i class="fas fa-credit-card"></i>
+                            PAGAR CON TARJETA
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -325,7 +325,23 @@ function initializeCart() {
             }
         });
 
-        // Checkout
+        // Billeteras Virtuales Argentinas
+        const walletButtons = document.querySelectorAll('.wallet-btn');
+        walletButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('El carrito está vacío');
+                    return;
+                }
+                
+                const wallet = this.getAttribute('data-wallet');
+                const total = calculateCartTotal();
+                
+                processWalletPayment(wallet, total);
+            });
+        });
+
+        // Checkout tradicional con tarjeta
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', function() {
                 if (cart.length === 0) {
@@ -334,7 +350,7 @@ function initializeCart() {
                 }
                 
                 const total = calculateCartTotal();
-                alert(`Procesando pago por $${total}...\n\n(En una implementación real, aquí se redirigiría a la pasarela de pago)`);
+                alert(`Procesando pago con tarjeta por $${total}...\n\n(En una implementación real, aquí se redirigiría a la pasarela de pago tradicional)`);
                 
                 // Vaciar carrito después del checkout simulado
                 setTimeout(() => {
@@ -684,3 +700,51 @@ setInterval(function() {
 // Función global para actualizar cantidad en carrito (necesaria para los event handlers inline)
 window.updateItemQuantity = updateItemQuantity;
 window.removeFromCart = removeFromCart;
+
+// Procesar pagos con billeteras virtuales argentinas
+function processWalletPayment(wallet, total) {
+    const walletNames = {
+        'mercadopago': 'Mercado Pago',
+        'uala': 'Ualá',
+        'cuentadni': 'Cuenta DNI',
+        'modo': 'MODO',
+        'naranjax': 'Naranja X',
+        'personalpay': 'Personal Pay'
+    };
+    
+    const walletName = walletNames[wallet] || wallet;
+    
+    // URLs de redirección simuladas (en producción, serían URLs reales de las APIs)
+    const walletUrls = {
+        'mercadopago': `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=ASOCIACION_ILICITA_${Date.now()}`,
+        'uala': `https://uala.com.ar/pago?merchant=asociacion-ilicita&amount=${total}`,
+        'cuentadni': `https://cuentadni.bna.com.ar/pagar?comercio=asociacion-ilicita&monto=${total}`,
+        'modo': `https://modo.com.ar/pago?merchant=asociacion-ilicita&total=${total}`,
+        'naranjax': `https://naranjax.com/pagar?merchant=asociacion-ilicita&importe=${total}`,
+        'personalpay': `https://personalpay.com.ar/checkout?merchant=asociacion-ilicita&valor=${total}`
+    };
+    
+    // Mostrar mensaje de procesamiento
+    alert(`🎸 ¡ROCK & ROLL! 🎸\n\nProcesando pago con ${walletName}...\nTotal: $${total}\n\nEn unos segundos serás redirigido a ${walletName} para completar tu compra de merch de ASOCIACIÓN ILÍCITA.`);
+    
+    // Simular redirección (en producción, sería una redirección real)
+    setTimeout(() => {
+        const proceed = confirm(`¿Continuar con el pago de $${total} usando ${walletName}?\n\n(En una implementación real, serías redirigido a la app/web de ${walletName})`);
+        
+        if (proceed) {
+            // Simular procesamiento exitoso
+            setTimeout(() => {
+                cart = [];
+                updateCartDisplay();
+                updateCartCount();
+                alert(`🤘 ¡PAGO EXITOSO! 🤘\n\n✅ Pago de $${total} procesado con ${walletName}\n✅ Tu pedido de merch de ASOCIACIÓN ILÍCITA está confirmado\n✅ Recibirás un email con los detalles\n\n¡Gracias por apoyar la banda!`);
+                
+                // Cerrar modal del carrito
+                const cartModal = document.getElementById('cartModal');
+                if (cartModal) {
+                    cartModal.style.display = 'none';
+                }
+            }, 2000);
+        }
+    }, 1000);
+}

@@ -1790,3 +1790,137 @@ section {
 .loading {
     animation: pulse 1s infinite;
 }
+
+/* Payment Methods & Argentine Wallets */
+.payment-methods {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--red);
+}
+
+.payment-methods h3 {
+    color: var(--neon-green);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-title);
+    text-shadow: var(--text-shadow);
+}
+
+.wallet-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.wallet-btn {
+    background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+    border: 2px solid var(--red);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.wallet-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.wallet-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    border-color: var(--neon-green);
+}
+
+.wallet-btn.mercadopago {
+    border-color: #00b3ff;
+}
+
+.wallet-btn.mercadopago:hover {
+    border-color: #00b3ff;
+    box-shadow: 0 5px 15px rgba(0, 179, 255, 0.3);
+}
+
+.wallet-btn.uala {
+    border-color: #ff6b6b;
+}
+
+.wallet-btn.uala:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.wallet-btn.cuenta-dni {
+    border-color: #4ecdc4;
+}
+
+.wallet-btn.cuenta-dni:hover {
+    border-color: #4ecdc4;
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+}
+
+.wallet-btn.modo {
+    border-color: #7b68ee;
+}
+
+.wallet-btn.modo:hover {
+    border-color: #7b68ee;
+    box-shadow: 0 5px 15px rgba(123, 104, 238, 0.3);
+}
+
+.wallet-btn.naranja-x {
+    border-color: #ff8c00;
+}
+
+.wallet-btn.naranja-x:hover {
+    border-color: #ff8c00;
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+}
+
+.wallet-btn.personal-pay {
+    border-color: #32cd32;
+}
+
+.wallet-btn.personal-pay:hover {
+    border-color: #32cd32;
+    box-shadow: 0 5px 15px rgba(50, 205, 50, 0.3);
+}
+
+.traditional-payment {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dark-gray);
+}
+
+.checkout-btn.traditional {
+    background: linear-gradient(135deg, var(--red) 0%, #cc0000 100%);
+    width: 100%;
+    max-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .wallet-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .wallet-btn {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .wallet-btn i {
+        font-size: 1.25rem;
+    }
+}
