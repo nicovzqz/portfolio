@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - ASOCIACION ILICITA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Black+Ops+One&family=Rubik+Distressed:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="gallery-page">
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>ASOCIACION ILICITA</h1>
+                <span class="subtitle">PUNK ROCK BAND</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">HOME</a></li>
+                <li><a href="gallery.html" class="nav-link active">GALLERY</a></li>
+                <li><a href="merch.html" class="nav-link">MERCH</a></li>
+                <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main gallery-main">
+        <section class="gallery-hero">
+            <div class="container">
+                <h1 class="page-title">
+                    <span class="glitch" data-text="GALLERY">GALLERY</span>
+                </h1>
+                <p class="page-subtitle">MOMENTOS ÉPICOS DEL UNDERGROUND</p>
+            </div>
+        </section>
+
+        <section class="gallery-filters">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">TODAS</button>
+                    <button class="filter-btn" data-filter="live">EN VIVO</button>
+                    <button class="filter-btn" data-filter="backstage">BACKSTAGE</button>
+                    <button class="filter-btn" data-filter="studio">ESTUDIO</button>
+                    <button class="filter-btn" data-filter="fans">FANS</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="photo-gallery">
+            <div class="container">
+                <div class="gallery-grid">
+                    <!-- Live Photos -->
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-microphone"></i>
+                                <span class="photo-title">Luna Park 2024</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Luna Park Show</h3>
+                                    <p>Buenos Aires - Noviembre 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-guitar"></i>
+                                <span class="photo-title">Malvinas Rock</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Riff Devastador</h3>
+                                    <p>Córdoba - Octubre 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-drum"></i>
+                                <span class="photo-title">Groove Club</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Batería Explosiva</h3>
+                                    <p>Palermo - Septiembre 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backstage Photos -->
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-users"></i>
+                                <span class="photo-title">Pre-Show</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Preparándose</h3>
+                                    <p>Backstage - Luna Park</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-beer"></i>
+                                <span class="photo-title">After Show</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Celebración</h3>
+                                    <p>Post-concierto Groove</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Studio Photos -->
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-headphones"></i>
+                                <span class="photo-title">Grabación</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>En el Estudio</h3>
+                                    <p>Grabando "Destroy the Silence"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-sliders-h"></i>
+                                <span class="photo-title">Mixing</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Mezclando</h3>
+                                    <p>Proceso de mezcla EP 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fans Photos -->
+                    <div class="gallery-item" data-category="fans">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-hand-rock"></i>
+                                <span class="photo-title">Mosh Pit</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Mosh Pit Épico</h3>
+                                    <p>Fans en Luna Park</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="fans">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-heart"></i>
+                                <span class="photo-title">Meet & Greet</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Con los Fans</h3>
+                                    <p>Encuentro con seguidores</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-fire"></i>
+                                <span class="photo-title">Festival</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Festival de Rock</h3>
+                                    <p>Cosquín Rock 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-tools"></i>
+                                <span class="photo-title">Setup</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Montaje</h3>
+                                    <p>Preparando el escenario</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-compact-disc"></i>
+                                <span class="photo-title">Master</span>
+                            </div>
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Masterización</h3>
+                                    <p>Último paso del álbum</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="title-graffiti">VIDEOS</span>
+                    <div class="title-underline"></div>
+                </h2>
+                
+                <div class="videos-grid">
+                    <div class="video-card embedded">
+                        <div class="video-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/r8A8RCeIPKU" 
+                                title="TE VEO PASAR - En Vivo Strummer Bar"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>TE VEO PASAR - En Vivo Strummer Bar</h3>
+                            <p>2.1M visualizaciones</p>
+                        </div>
+                    </div>
+
+                    <div class="video-card embedded">
+                        <div class="video-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/sXGV0JfMyww" 
+                                title="NO ME HABLES - En Vivo Strummer Bar"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>NO ME HABLES - En Vivo Strummer Bar</h3>
+                            <p>850K visualizaciones</p>
+                        </div>
+                    </div>
+
+                    <div class="video-card embedded">
+                        <div class="video-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/AtunBDOH-wM" 
+                                title="ESPERO QUE - En Vivo Strummer Bar"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ESPERO QUE - En Vivo Strummer Bar</h3>
+                            <p>425K visualizaciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ASOCIACION ILICITA</h3>
+                    <p>The sound of rebellion</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Spotify"><i class="fab fa-spotify"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>NAVIGATION</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="merch.html">Merchandise</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-envelope"></i> booking@asociacionilicita.com</p>
+                    <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Asociacion Ilicita. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-image">
+                <i class="fas fa-image"></i>
+                <h3 id="lightboxTitle">Título de la foto</h3>
+                <p id="lightboxDescription">Descripción de la foto</p>
+            </div>
+            <div class="lightbox-nav">
+                <button class="nav-btn prev-btn" title="Foto anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn next-btn" title="Foto siguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

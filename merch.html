@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merch - CHAOS REBELS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Black+Ops+One&family=Rubik+Distressed:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="merch-page">
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>CHAOS REBELS</h1>
+                <span class="subtitle">PUNK ROCK BAND</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">HOME</a></li>
+                <li><a href="gallery.html" class="nav-link">GALLERY</a></li>
+                <li><a href="merch.html" class="nav-link active">MERCH</a></li>
+                <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main merch-main">
+        <section class="merch-hero">
+            <div class="container">
+                <h1 class="page-title">
+                    <span class="glitch" data-text="MERCH">MERCH</span>
+                </h1>
+                <p class="page-subtitle">VISTE LA REBELIÓN</p>
+            </div>
+        </section>
+
+        <section class="merch-filters">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">TODO</button>
+                    <button class="filter-btn" data-filter="clothing">ROPA</button>
+                    <button class="filter-btn" data-filter="music">MÚSICA</button>
+                    <button class="filter-btn" data-filter="accessories">ACCESORIOS</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="container">
+                <div class="products-grid">
+                    <!-- Clothing -->
+                    <div class="product-card" data-category="clothing">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <div class="product-badge">NUEVO</div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Camiseta Logo Clásico</h3>
+                            <p class="product-description">100% algodón, diseño oficial de la banda</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option value="">Talla</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="product-price">$2500</div>
+                            <button class="add-to-cart-btn" data-id="1" data-name="Camiseta Logo Clásico" data-price="2500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="clothing">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Camiseta "Destroy the Silence"</h3>
+                            <p class="product-description">Edición limitada del último EP</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option value="">Talla</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="product-price">$3000</div>
+                            <button class="add-to-cart-btn" data-id="2" data-name="Camiseta Destroy the Silence" data-price="3000">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="clothing">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-hoodie"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Hoodie Calavera Punk</h3>
+                            <p class="product-description">Sudadera con capucha, diseño exclusivo</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option value="">Talla</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="product-price">$6500</div>
+                            <button class="add-to-cart-btn" data-id="3" data-name="Hoodie Calavera Punk" data-price="6500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Music -->
+                    <div class="product-card" data-category="music">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-compact-disc"></i>
+                            </div>
+                            <div class="product-badge hot">HOT</div>
+                        </div>
+                        <div class="product-info">
+                            <h3>EP "Destroy the Silence"</h3>
+                            <p class="product-description">CD físico con 5 tracks + booklet</p>
+                            <div class="product-price">$1500</div>
+                            <button class="add-to-cart-btn" data-id="4" data-name="EP Destroy the Silence" data-price="1500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="music">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-record-vinyl"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Vinilo "Underground Kings"</h3>
+                            <p class="product-description">LP completo en vinilo negro 180g</p>
+                            <div class="product-price">$4500</div>
+                            <button class="add-to-cart-btn" data-id="5" data-name="Vinilo Underground Kings" data-price="4500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="music">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-cassette-tape"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Cassette Collection</h3>
+                            <p class="product-description">Pack de 3 cassettes con discografía completa</p>
+                            <div class="product-price">$3500</div>
+                            <button class="add-to-cart-btn" data-id="6" data-name="Cassette Collection" data-price="3500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Accessories -->
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-hat-cowboy"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Gorra Snapback</h3>
+                            <p class="product-description">Bordado 3D del logo de la banda</p>
+                            <div class="product-price">$2000</div>
+                            <button class="add-to-cart-btn" data-id="7" data-name="Gorra Snapback" data-price="2000">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-ring"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Pulsera de Cuero</h3>
+                            <p class="product-description">Cuero genuino con tachas metálicas</p>
+                            <div class="product-price">$1800</div>
+                            <button class="add-to-cart-btn" data-id="8" data-name="Pulsera de Cuero" data-price="1800">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-guitar-pick"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Set de Púas</h3>
+                            <p class="product-description">Pack de 6 púas oficiales diferentes diseños</p>
+                            <div class="product-price">$800</div>
+                            <button class="add-to-cart-btn" data-id="9" data-name="Set de Púas" data-price="800">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Taza Chaos Rebels</h3>
+                            <p class="product-description">Taza de cerámica negra con logo dorado</p>
+                            <div class="product-price">$1200</div>
+                            <button class="add-to-cart-btn" data-id="10" data-name="Taza Chaos Rebels" data-price="1200">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-sticker"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Pack Stickers</h3>
+                            <p class="product-description">20 stickers impermeables variados</p>
+                            <div class="product-price">$500</div>
+                            <button class="add-to-cart-btn" data-id="11" data-name="Pack Stickers" data-price="500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="clothing">
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="fas fa-vest"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Chaleco de Jean</h3>
+                            <p class="product-description">Chaleco denim con parches bordados</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option value="">Talla</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="product-price">$5500</div>
+                            <button class="add-to-cart-btn" data-id="12" data-name="Chaleco de Jean" data-price="5500">
+                                <i class="fas fa-cart-plus"></i>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CHAOS REBELS</h3>
+                    <p>The sound of rebellion</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Spotify"><i class="fab fa-spotify"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>NAVIGATION</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="merch.html">Merchandise</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-envelope"></i> booking@chaosrebels.com</p>
+                    <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chaos Rebels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-cart"></i> CARRITO</h2>
+                <span class="cart-close">&times;</span>
+            </div>
+            <div class="cart-body">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be added here dynamically -->
+                </div>
+                <div class="cart-empty" id="cartEmpty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Tu carrito está vacío</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total: $<span id="cartTotal">0</span></strong>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn">
+                    <i class="fas fa-credit-card"></i>
+                    PROCEDER AL PAGO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
