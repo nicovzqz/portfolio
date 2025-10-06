@@ -408,15 +408,13 @@ button {
 
 .contact {
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     width: 500px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 10;
-    margin-bottom: 10rem
+    flex: 1; /* Se expande para ocupar el espacio disponible */
 }
 
 @media (max-width: 700px) {
@@ -1410,4 +1408,62 @@ audio {
   accent-color: #888;
   background: #e0e0e0;
   border-radius: 6px;
+}
+
+/* Contenedor para contact e imagen de fondo */
+.contact-image-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Imagen mb.gif detrás del contact sin transparencia */
+.floating-image {
+  position: absolute;
+  top: 80px; /* Movida hacia abajo */
+  right: -100px; /* Movida más hacia la derecha */
+  z-index: 1;
+  opacity: 1; /* Sin transparencia */
+  pointer-events: none; /* No interfiere con los clics del formulario */
+}
+
+.floating-image:hover {
+  opacity: 1; /* Mantiene opacidad completa al pasar el mouse */
+}
+
+.floating-image img {
+  width: 600px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  object-fit: contain;
+  image-rendering: auto;
+  max-height: 340px; /* Mantiene aspecto 16:9 de la imagen original */
+}
+
+/* Responsividad para dispositivos móviles */
+@media (max-width: 768px) {
+  .floating-image {
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+    opacity: 1; /* Sin transparencia en móviles también */
+  }
+  
+  .floating-image img {
+    width: 350px;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-image-container {
+    padding: 0 15px;
+  }
+  
+  .floating-image img {
+    width: 280px;
+    max-height: 160px;
+  }
 }
