@@ -748,3 +748,107 @@ function processWalletPayment(wallet, total) {
         }
     }, 1000);
 }
+
+// ==================== MEJORAS PARA MÓVIL ====================
+// Detectar dispositivo móvil
+function isMobile() {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Optimizar touch events para móvil
+function initializeTouchOptimizations() {
+    if (isMobile()) {
+        // Mejorar el tapping en botones
+        const buttons = document.querySelectorAll('button, .btn-primary, .btn-secondary, .filter-btn, .wallet-btn');
+        buttons.forEach(button => {
+            button.style.cursor = 'pointer';
+            button.addEventListener('touchstart', function() {
+                this.style.opacity = '0.8';
+            });
+            button.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            });
+        });
+
+        // Prevenir zoom accidental
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+
+        // Optimizar modales para móvil
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.addEventListener('touchmove', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        // Mejorar el scroll en iOS
+        document.body.style.webkitOverflowScrolling = 'touch';
+        
+        // Ajustar viewport para evitar zoom en inputs
+        const viewport = document.querySelector('meta[name=viewport]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+        }
+    }
+}
+
+// Optimizar rendimiento en dispositivos lentos
+function initializePerformanceOptimizations() {
+    // Lazy loading para imágenes en móvil
+    if ('IntersectionObserver' in window && isMobile()) {
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
+
+    // Reducir animaciones en dispositivos lentos
+    if (isMobile() && navigator.hardwareConcurrency <= 2) {
+        document.body.classList.add('reduced-motion');
+        const style = document.createElement('style');
+        style.textContent = `
+            .reduced-motion * {
+                animation-duration: 0.1s !important;
+                transition-duration: 0.1s !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Inicializar optimizaciones móviles
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTouchOptimizations();
+    initializePerformanceOptimizations();
+});
+
+// Ajustar en cambio de orientación
+window.addEventListener('orientationchange', function() {
+    setTimeout(() => {
+        // Recalcular dimensiones
+        window.scrollTo(0, 1);
+        
+        // Reajustar modales si están abiertos
+        const openModal = document.querySelector('.modal[style*="block"]');
+        if (openModal) {
+            const content = openModal.querySelector('.modal-content, .cart-content, .lightbox-content');
+            if (content) {
+                content.style.transform = 'none';
+                setTimeout(() => {
+                    content.style.transform = '';
+                }, 100);
+            }
+        }
+    }, 500);
+});
