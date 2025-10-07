@@ -20,43 +20,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ==================== NAVEGACIÓN ====================
 function initializeNavigation() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+    // Prevenir múltiples inicializaciones
+    if (window.navigationInitialized) {
+        console.log('⚠️ Navegación ya inicializada, saltando...');
+        return;
+    }
+    
+    console.log('🚀 Inicializando navegación...');
+    
+    const hamburger = document.getElementById('hamburger-menu') || document.querySelector('.hamburger');
+    const navMenu = document.getElementById('nav-menu') || document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    console.log('Elementos encontrados:', {
-        hamburger: hamburger,
-        navMenu: navMenu,
-        navLinksCount: navLinks.length
+    console.log('🔍 Elementos encontrados:', {
+        hamburger: !!hamburger,
+        navMenu: !!navMenu,
+        navLinksCount: navLinks.length,
+        hamburgerDisplay: hamburger ? window.getComputedStyle(hamburger).display : 'N/A'
     });
 
     if (hamburger && navMenu) {
-        console.log('Configurando hamburger menu...');
+        console.log('⚙️ Configurando hamburger menu...');
         
         // Función para toggle del menú
         function toggleMenu(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Toggle menu triggered!');
+            console.log('🎯 Toggle menu triggered!');
+            
+            const wasActive = navMenu.classList.contains('active');
             
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
             
-            console.log('Estado después del click:', {
-                hamburgerActive: hamburger.classList.contains('active'),
-                navMenuActive: navMenu.classList.contains('active'),
-                bodyMenuOpen: document.body.classList.contains('menu-open')
-            });
+            const isActive = navMenu.classList.contains('active');
+            
+            console.log(`📱 Estado del menú: ${wasActive ? 'ABIERTO' : 'CERRADO'} → ${isActive ? 'ABIERTO' : 'CERRADO'}`);
+            
+            // Forzar repaint
+            hamburger.offsetHeight;
+            navMenu.offsetHeight;
         }
         
-        // Eventos para click y touch
-        hamburger.addEventListener('click', toggleMenu);
+        // Remover event listeners existentes si los hay
+        hamburger.removeEventListener('click', toggleMenu);
+        hamburger.removeEventListener('touchend', toggleMenu);
+        
+        // Agregar event listeners
+        hamburger.addEventListener('click', toggleMenu, { passive: false });
+        hamburger.addEventListener('touchend', toggleMenu, { passive: false });
+        
+        // Prevenir comportamiento touch por defecto
         hamburger.addEventListener('touchstart', function(e) {
+            console.log('👆 Touch start detectado');
             e.preventDefault();
-            console.log('Touch start en hamburger!');
-        });
-        hamburger.addEventListener('touchend', toggleMenu);
+        }, { passive: false });
 
         // Cerrar menú al hacer click en un enlace
         navLinks.forEach(link => {
@@ -93,6 +112,10 @@ function initializeNavigation() {
             }
         });
     });
+    
+    // Marcar como inicializado
+    window.navigationInitialized = true;
+    console.log('✅ Navegación inicializada correctamente');
 }
 
 // ==================== MODAL DE TICKETS ====================
