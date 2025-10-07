@@ -209,13 +209,16 @@ body {
 }
 
 .hero-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    margin-left: -10rem;
+    padding: 0 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.5rem;
     align-items: center;
+    justify-content: start;
 }
 
 .hero-title {
@@ -353,31 +356,46 @@ body {
 /* Hero Visual Elements */
 .hero-visual {
     position: relative;
-    height: 500px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
+    min-width: 1000px;
+    padding: 0.5rem 0;
+    margin-left: -5rem;
 }
 
 /* Hero Logo Styles */
 .hero-logo {
-    max-width: 400px;
-    width: 100%;
+    width: 1000px;
+    max-width: 1000px;
     height: auto;
     border: none;
     background: transparent;
-    transition: all 0.4s ease;
-    filter: contrast(1.5) saturate(1.3) brightness(1.1);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: contrast(1.3) saturate(1.2) brightness(1.1) drop-shadow(0 0 10px #ff0000);
     opacity: 0.9;
     position: relative;
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: filter, transform;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    min-width: 1000px;
+    margin: 0;
+    transform: translateX(100px);
+    pointer-events: auto;
 }
 
 .hero-logo:hover {
-    transform: scale(1.05) rotate(1deg);
-    filter: contrast(1.7) saturate(1.5) brightness(1.2);
+    transform: translateX(100px) scale(1.05) rotate(1deg);
+    filter: contrast(1.5) saturate(1.4) brightness(1.2) drop-shadow(0 0 15px #ff0000);
     opacity: 1;
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
 }
 
 

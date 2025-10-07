@@ -37,7 +37,7 @@
             <div class="hero-bg"></div>
             <div class="hero-content">
                 <div class="hero-visual">
-                    <img src="asocmov.gif" alt="Asociacion Ilicita Logo Animado" class="hero-logo">
+                    <img src="asocmov.gif?loop=1" alt="Asociacion Ilicita Logo Animado" class="hero-logo" loading="eager" decoding="async" id="hero-gif">
                 </div>
                 <div class="hero-text">
                     <h1 class="hero-title">
@@ -326,6 +326,35 @@
         </div>
     </div>
 
+    <script>
+    // LOOP INFINITO FORZADO para asocmov.gif
+    document.addEventListener('DOMContentLoaded', function() {
+        const gif = document.getElementById('hero-gif');
+        if (gif) {
+            const originalSrc = 'asocmov.gif';
+            let counter = 0; // Empezar en 0
+            
+            // Función para recargar el GIF con timestamp único
+            function forceGifLoop() {
+                counter++;
+                gif.src = originalSrc + '?loop=' + counter + '&t=' + Date.now();
+                console.log('GIF recargado - Loop #' + counter);
+            }
+            
+            // Detectar cuando el GIF termina y reiniciarlo inmediatamente
+            gif.addEventListener('load', function() {
+                console.log('GIF cargado completamente - Loop #' + counter);
+            });
+            
+            // Ejecutar la primera vez después de 8 segundos (no inmediatamente)
+            // Luego repetir cada 8 segundos
+            setTimeout(function() {
+                forceGifLoop(); // Primera ejecución
+                setInterval(forceGifLoop, 8000); // Repeticiones cada 8 segundos
+            }, 8000); // Esperar 8 segundos antes de empezar
+        }
+    });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
