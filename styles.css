@@ -1465,11 +1465,16 @@ section {
 .lightbox-content {
     max-width: 95vw;
     max-height: 95vh;
+    width: fit-content;
     text-align: center;
     background: transparent;
     border: none;
-    padding: 0;
+    padding: 20px;
     margin: 2.5vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .close,
@@ -1687,11 +1692,15 @@ section {
 .lightbox-image {
     margin-bottom: 2rem;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .lightbox-image img {
     max-width: 90vw;
-    max-height: 85vh;
+    max-height: 80vh;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -1699,6 +1708,8 @@ section {
     border-radius: 10px;
     box-shadow: var(--shadow-red);
     animation: zoomIn 0.3s ease-out;
+    display: block;
+    margin: 0 auto;
 }
 
 .lightbox-image i {
@@ -1893,36 +1904,70 @@ section {
         align-self: flex-end;
     }
     
-    /* Lightbox móvil */
+    /* Lightbox móvil optimizado */
     .lightbox-content {
         margin: 0;
         width: 100vw;
         max-width: 100vw;
         height: 100vh;
         max-height: 100vh;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .lightbox-image {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .lightbox-image img {
-        max-width: 95vw;
-        max-height: 75vh;
+        max-width: 92vw;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        border-width: 2px;
+        border-radius: 8px;
+    }
+    
+    .lightbox-image h3 {
+        font-size: 1rem;
+        margin: 0.8rem 0 0.3rem;
+        text-align: center;
+    }
+    
+    .lightbox-image p {
+        font-size: 0.85rem;
+        text-align: center;
+        margin-bottom: 0;
     }
     
     .lightbox-close {
+        position: fixed;
         top: 10px;
-        right: 15px;
+        right: 10px;
         width: 40px;
         height: 40px;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        z-index: 2002;
     }
     
     .nav-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
     }
     
     .lightbox-nav {
         padding: 0 10px;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
     }
 }
 
@@ -1968,6 +2013,37 @@ section {
     .band-stats {
         flex-direction: column;
         gap: 1rem;
+    }
+    
+    /* Lightbox móvil pequeño */
+    .lightbox-image img {
+        max-width: 95vw;
+        max-height: 65vh;
+        border-width: 1px;
+        border-radius: 6px;
+    }
+    
+    .lightbox-image h3 {
+        font-size: 0.9rem;
+        margin: 0.6rem 0 0.2rem;
+    }
+    
+    .lightbox-image p {
+        font-size: 0.75rem;
+    }
+    
+    .lightbox-close {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
     }
 }
 
@@ -2162,6 +2238,33 @@ section {
         gap: 1rem;
         padding: 0 0.5rem;
         max-width: 900px;
+    }
+    
+    /* Lightbox tablets */
+    .lightbox-content {
+        padding: 15px;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+    
+    .lightbox-image img {
+        max-width: 85vw;
+        max-height: 75vh;
+        border-width: 2px;
+    }
+    
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
+    }
+    
+    .nav-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
     }
 }
 
