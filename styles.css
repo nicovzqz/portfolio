@@ -195,8 +195,10 @@ body.menu-open {
     justify-content: center;
     align-items: center;
     -webkit-tap-highlight-color: transparent;
-    user-select: none;
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     touch-action: manipulation;
 }
 
@@ -226,6 +228,11 @@ body.menu-open {
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Hidden audio element */
+.hidden-audio {
+    display: none !important;
 }
 
 /* Main content */
@@ -292,14 +299,14 @@ body.menu-open {
 
 .glitch::before {
     animation: glitchTop 1s linear infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
 }
 
 .glitch::after {
     animation: glitchBotom 1.5s linear infinite;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
     -webkit-clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
 }
 
 @keyframes glitch {
@@ -417,6 +424,7 @@ body.menu-open {
     opacity: 0.9;
     position: relative;
     mix-blend-mode: normal;
+    -webkit-image-rendering: -webkit-optimize-contrast;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     will-change: filter, transform;
@@ -2127,10 +2135,10 @@ section {
         transition: transform 0.2s ease;
         cursor: zoom-in;
         transform-origin: center center;
-        user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
+        user-select: none;
         touch-action: none;
     }
     
@@ -2237,6 +2245,9 @@ section {
         justify-content: center;
         transition: all 0.3s ease;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
     }
@@ -2466,19 +2477,19 @@ input, select, textarea {
 .release-card,
 .video-card {
     will-change: transform;
-    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Optimizar scrolling en móviles */
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
     -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
 }
 
 /* Scrollbar personalizada */
@@ -2511,6 +2522,7 @@ body {
 /* Optimizaciones adicionales para pantallas de alta densidad */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .lightbox-image img {
+        -webkit-image-rendering: -webkit-optimize-contrast;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
     }
@@ -2716,6 +2728,28 @@ body {
         width: 55px;
         height: 55px;
         font-size: 1.3rem;
+    }
+}
+
+/* RESPONSIVE MEJORADO - PEQUEÑAS TABLETS */
+@media (max-width: 900px) and (min-width: 769px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .hero-logo {
+        width: 900px !important;
+        max-width: 900px !important;
+        min-width: 900px !important;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        max-width: 650px;
     }
 }
 
