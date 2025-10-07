@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMerchStore();
     initializeCart();
     initializeLightbox();
+    initializeImageModal();
     
     // Agregar efectos de sonido simulados
     addSoundEffects();
@@ -852,3 +853,49 @@ window.addEventListener('orientationchange', function() {
         }
     }, 500);
 });
+
+// ==================== MODAL DE IMAGEN ====================
+function initializeImageModal() {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('imageCaption');
+    const closeBtn = document.querySelector('.image-modal-close');
+    
+    // Agregar event listener a todas las imágenes de productos
+    const productImages = document.querySelectorAll('.product-img');
+    
+    productImages.forEach(img => {
+        img.addEventListener('click', function() {
+            modal.style.display = 'block';
+            modalImg.src = this.src;
+            captionText.textContent = this.alt;
+            
+            // Prevenir scroll del body
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    // Cerrar modal con el botón X
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeImageModal);
+    }
+    
+    // Cerrar modal clickeando fuera de la imagen
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeImageModal();
+        }
+    });
+    
+    // Cerrar modal con la tecla ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeImageModal();
+        }
+    });
+    
+    function closeImageModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
