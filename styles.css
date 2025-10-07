@@ -211,14 +211,14 @@ body {
 .hero-content {
     max-width: none;
     width: 100%;
-    margin: 0;
-    margin-left: -10rem;
+    margin: 0 auto;
+    margin-left: -5rem;
     padding: 0 1rem;
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 0.2rem;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
 }
 
 .hero-title {
@@ -363,7 +363,7 @@ body {
     overflow: visible;
     min-width: 1000px;
     padding: 0.5rem 0;
-    margin-left: -5rem;
+    margin-left: -2rem;
 }
 
 /* Hero Logo Styles */
@@ -381,18 +381,14 @@ body {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     will-change: filter, transform;
-    animation-iteration-count: infinite;
-    animation-play-state: running;
-    animation-fill-mode: forwards;
-    animation-direction: normal;
     min-width: 1000px;
     margin: 0;
-    transform: translateX(100px);
+    transform: translateX(0px);
     pointer-events: auto;
 }
 
 .hero-logo:hover {
-    transform: translateX(100px) scale(1.05) rotate(1deg);
+    transform: translateX(0px) scale(1.05) rotate(1deg);
     filter: contrast(1.5) saturate(1.4) brightness(1.2) drop-shadow(0 0 15px #ff0000);
     opacity: 1;
     mix-blend-mode: normal;
@@ -1927,21 +1923,21 @@ section {
 /* RESPONSIVE MEJORADO - TABLETS */
 @media (max-width: 1024px) {
     .hero-content {
-        margin-left: -5rem;
-        grid-template-columns: 1.5fr 1fr;
-        gap: 1rem;
+        margin-left: -2rem;
+        grid-template-columns: 1.3fr 1.2fr;
+        gap: 0.3rem;
     }
     
     .hero-logo {
-        width: 600px;
-        max-width: 600px;
-        min-width: 600px;
-        transform: translateX(50px);
+        width: 1200px;
+        max-width: 1200px;
+        min-width: 1200px;
+        transform: translateX(40px);
     }
     
     .hero-visual {
         min-width: 600px;
-        margin-left: -2rem;
+        margin-left: -1rem;
     }
 }
 
@@ -1955,9 +1951,9 @@ section {
     }
     
     .hero-logo {
-        width: 400px !important;
-        max-width: 400px !important;
-        min-width: 400px !important;
+        width: 800px !important;
+        max-width: 800px !important;
+        min-width: 800px !important;
         transform: translateX(0) !important;
         margin: 0 auto;
     }
@@ -1987,9 +1983,9 @@ section {
 /* RESPONSIVE MÓVILES PEQUEÑOS */
 @media (max-width: 480px) {
     .hero-logo {
-        width: 280px !important;
-        max-width: 280px !important;
-        min-width: 280px !important;
+        width: 560px !important;
+        max-width: 560px !important;
+        min-width: 560px !important;
     }
     
     .wallet-buttons {
