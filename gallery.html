@@ -497,7 +497,18 @@
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image">
+            <div class="lightbox-zoom-controls">
+                <button class="zoom-btn zoom-in-btn" title="Zoom In">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="zoom-btn zoom-out-btn" title="Zoom Out">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="zoom-btn zoom-reset-btn" title="Reset Zoom">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+            </div>
+            <div class="lightbox-image" id="lightboxImageContainer">
                 <img id="lightboxImg" src="" alt="Foto expandida">
                 <h3 id="lightboxTitle">Título de la foto</h3>
                 <p id="lightboxDescription">Descripción de la foto</p>

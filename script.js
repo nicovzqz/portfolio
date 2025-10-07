@@ -520,6 +520,9 @@ function initializeLightbox() {
     const lightboxClose = document.querySelector('.lightbox-close');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
+    const zoomInBtn = document.querySelector('.zoom-in-btn');
+    const zoomOutBtn = document.querySelector('.zoom-out-btn');
+    const zoomResetBtn = document.querySelector('.zoom-reset-btn');
     
     if (lightbox) {
         // Cerrar lightbox
@@ -541,8 +544,81 @@ function initializeLightbox() {
                 navigateLightbox(1);
             });
         }
+
+        // Controles de zoom
+        if (zoomInBtn) {
+            zoomInBtn.addEventListener('click', function() {
+                zoomImage(1.2);
+            });
+        }
+
+        if (zoomOutBtn) {
+            zoomOutBtn.addEventListener('click', function() {
+                zoomImage(0.8);
+            });
+        }
+
+        if (zoomResetBtn) {
+            zoomResetBtn.addEventListener('click', function() {
+                resetZoom();
+            });
+        }
+
+        // Zoom con rueda del ratón
+        const lightboxImg = document.getElementById('lightboxImg');
+        if (lightboxImg) {
+            lightboxImg.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
+                zoomImage(zoomFactor);
+            });
+
+            // Drag para mover la imagen cuando está ampliada
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let initialX = 0, initialY = 0;
+
+            lightboxImg.addEventListener('mousedown', function(e) {
+                if (lightboxImg.style.transform && lightboxImg.style.transform.includes('scale')) {
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    
+                    // Obtener posición actual
+                    const transform = lightboxImg.style.transform;
+                    const translateMatch = transform.match(/translate\(([^)]+)\)/);
+                    if (translateMatch) {
+                        const values = translateMatch[1].split(',');
+                        initialX = parseFloat(values[0]) || 0;
+                        initialY = parseFloat(values[1]) || 0;
+                    }
+                    
+                    lightboxImg.style.cursor = 'grabbing';
+                }
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+                    const newX = initialX + deltaX;
+                    const newY = initialY + deltaY;
+                    
+                    const currentTransform = lightboxImg.style.transform;
+                    const scaleMatch = currentTransform.match(/scale\(([^)]+)\)/);
+                    const scale = scaleMatch ? scaleMatch[1] : '1';
+                    
+                    lightboxImg.style.transform = `scale(${scale}) translate(${newX}px, ${newY}px)`;
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                lightboxImg.style.cursor = lightboxImg.style.transform.includes('scale') ? 'grab' : 'default';
+            });
+        }
         
-        // Cerrar con ESC
+        // Cerrar con ESC y zoom con teclado
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && lightbox.style.display === 'block') {
                 closeLightbox();
@@ -550,6 +626,12 @@ function initializeLightbox() {
                 navigateLightbox(-1);
             } else if (e.key === 'ArrowRight' && lightbox.style.display === 'block') {
                 navigateLightbox(1);
+            } else if (e.key === '+' && lightbox.style.display === 'block') {
+                zoomImage(1.2);
+            } else if (e.key === '-' && lightbox.style.display === 'block') {
+                zoomImage(0.8);
+            } else if (e.key === '0' && lightbox.style.display === 'block') {
+                resetZoom();
             }
         });
         
@@ -575,6 +657,9 @@ function openLightbox() {
         if (lightboxImg) {
             lightboxImg.src = image.src;
             lightboxImg.alt = image.title;
+            
+            // Resetear zoom al cambiar de imagen
+            resetZoom();
         }
         
         lightboxTitle.textContent = image.title;
@@ -618,6 +703,58 @@ function navigateLightbox(direction) {
     
     currentImageIndex = newIndex;
     openLightbox();
+}
+
+// ==================== FUNCIONES DE ZOOM ====================
+let currentZoom = 1;
+let currentTranslateX = 0;
+let currentTranslateY = 0;
+
+function zoomImage(factor) {
+    const lightboxImg = document.getElementById('lightboxImg');
+    if (!lightboxImg) return;
+    
+    currentZoom *= factor;
+    
+    // Limitar el zoom entre 0.5 y 5
+    currentZoom = Math.max(0.5, Math.min(5, currentZoom));
+    
+    // Si el zoom es muy cercano a 1, resetear posición
+    if (Math.abs(currentZoom - 1) < 0.1) {
+        currentZoom = 1;
+        currentTranslateX = 0;
+        currentTranslateY = 0;
+    }
+    
+    // Aplicar transformación
+    lightboxImg.style.transform = `scale(${currentZoom}) translate(${currentTranslateX}px, ${currentTranslateY}px)`;
+    lightboxImg.style.transformOrigin = 'center center';
+    
+    // Cambiar cursor
+    lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    
+    // Aplicar transición suave
+    lightboxImg.style.transition = 'transform 0.2s ease';
+    setTimeout(() => {
+        lightboxImg.style.transition = '';
+    }, 200);
+}
+
+function resetZoom() {
+    const lightboxImg = document.getElementById('lightboxImg');
+    if (!lightboxImg) return;
+    
+    currentZoom = 1;
+    currentTranslateX = 0;
+    currentTranslateY = 0;
+    
+    lightboxImg.style.transform = 'scale(1) translate(0px, 0px)';
+    lightboxImg.style.cursor = 'default';
+    lightboxImg.style.transition = 'transform 0.3s ease';
+    
+    setTimeout(() => {
+        lightboxImg.style.transition = '';
+    }, 300);
 }
 
 // ==================== EFECTOS ADICIONALES ====================
