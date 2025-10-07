@@ -1908,6 +1908,28 @@ section {
     transform: scale(0.95);
 }
 
+.hd-loading-indicator {
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--neon-green);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--neon-green);
+    gap: 8px;
+    align-items: center;
+    animation: pulse 2s infinite;
+}
+
+.hd-loading-indicator.show {
+    display: flex;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
 .lightbox-image {
     margin-bottom: 2rem;
     position: relative;
@@ -1936,6 +1958,24 @@ section {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /* Propiedades para mantener calidad al hacer zoom */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    transform-origin: center center;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    /* Interpolación suave para escalado */
+    -webkit-interpolation-mode: bicubic;
+    /* Optimizaciones de GPU */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Evitar blur en algunos navegadores */
+    -webkit-perspective: 1000;
+    perspective: 1000;
 }
 
 .lightbox-image i {

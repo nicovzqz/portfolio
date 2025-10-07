@@ -219,14 +219,24 @@ function initializeGallery() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     
     if (filterBtns.length > 0 && galleryItems.length > 0) {
-        // Crear array de imágenes para el lightbox
-        galleryImages = Array.from(galleryItems).map((item, index) => ({
-            index: index,
-            src: item.querySelector('.gallery-img')?.src || '',
-            title: item.querySelector('.photo-info h3')?.textContent || 'Sin título',
-            description: item.querySelector('.photo-info p')?.textContent || 'Sin descripción',
-            category: item.getAttribute('data-category')
-        }));
+        // Crear array de imágenes para el lightbox con soporte para alta resolución
+        galleryImages = Array.from(galleryItems).map((item, index) => {
+            const imgElement = item.querySelector('.gallery-img');
+            const baseSrc = imgElement?.src || '';
+            
+            // Generar URL de alta resolución (asumiendo que existe una versión HD)
+            const hdSrc = baseSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '_hd.$1');
+            
+            return {
+                index: index,
+                src: baseSrc,
+                hdSrc: hdSrc,
+                title: item.querySelector('.photo-info h3')?.textContent || 'Sin título',
+                description: item.querySelector('.photo-info p')?.textContent || 'Sin descripción',
+                category: item.getAttribute('data-category'),
+                hdLoaded: false
+            };
+        });
 
         // Filtros de galería
         filterBtns.forEach(btn => {
@@ -655,11 +665,22 @@ function openLightbox() {
         
         // Actualizar imagen
         if (lightboxImg) {
-            lightboxImg.src = image.src;
-            lightboxImg.alt = image.title;
-            
-            // Resetear zoom al cambiar de imagen
-            resetZoom();
+            // Precargar imagen para mejor calidad
+            const img = new Image();
+            img.onload = function() {
+                lightboxImg.src = this.src;
+                lightboxImg.alt = image.title;
+                
+                // Configurar propiedades iniciales para máxima calidad
+                lightboxImg.style.imageRendering = 'auto';
+                lightboxImg.style.filter = '';
+                lightboxImg.style.willChange = 'transform';
+                lightboxImg.style.transformOrigin = 'center center';
+                
+                // Resetear zoom al cambiar de imagen
+                resetZoom();
+            };
+            img.src = image.src;
         }
         
         lightboxTitle.textContent = image.title;
@@ -710,14 +731,49 @@ let currentZoom = 1;
 let currentTranslateX = 0;
 let currentTranslateY = 0;
 
+// Función para cargar imagen de alta resolución
+function loadHighResImage(imageData, callback) {
+    if (imageData.hdLoaded) {
+        callback(imageData.hdSrc);
+        return;
+    }
+    
+    // Mostrar indicador de carga
+    const hdIndicator = document.getElementById('hdLoadingIndicator');
+    if (hdIndicator) {
+        hdIndicator.classList.add('show');
+    }
+    
+    const hdImg = new Image();
+    hdImg.onload = function() {
+        imageData.hdLoaded = true;
+        callback(imageData.hdSrc);
+        // Ocultar indicador
+        if (hdIndicator) {
+            setTimeout(() => {
+                hdIndicator.classList.remove('show');
+            }, 500);
+        }
+    };
+    hdImg.onerror = function() {
+        // Si no existe la versión HD, usar la original
+        callback(imageData.src);
+        // Ocultar indicador
+        if (hdIndicator) {
+            hdIndicator.classList.remove('show');
+        }
+    };
+    hdImg.src = imageData.hdSrc;
+}
+
 function zoomImage(factor) {
     const lightboxImg = document.getElementById('lightboxImg');
     if (!lightboxImg) return;
     
     currentZoom *= factor;
     
-    // Limitar el zoom entre 0.5 y 5
-    currentZoom = Math.max(0.5, Math.min(5, currentZoom));
+    // Limitar el zoom entre 0.5 y 10 (aumentamos el rango máximo)
+    currentZoom = Math.max(0.5, Math.min(10, currentZoom));
     
     // Si el zoom es muy cercano a 1, resetear posición
     if (Math.abs(currentZoom - 1) < 0.1) {
@@ -726,18 +782,44 @@ function zoomImage(factor) {
         currentTranslateY = 0;
     }
     
-    // Aplicar transformación
-    lightboxImg.style.transform = `scale(${currentZoom}) translate(${currentTranslateX}px, ${currentTranslateY}px)`;
+    // Cargar imagen HD si el zoom es mayor a 2x y no se ha cargado aún
+    if (currentZoom > 2 && galleryImages[currentImageIndex] && !galleryImages[currentImageIndex].hdLoaded) {
+        loadHighResImage(galleryImages[currentImageIndex], function(hdSrc) {
+            if (lightboxImg.src !== hdSrc) {
+                lightboxImg.src = hdSrc;
+            }
+        });
+    }
+    
+    // Configurar propiedades para mejor calidad según el zoom
+    if (currentZoom > 4) {
+        lightboxImg.style.imageRendering = 'pixelated';
+    } else if (currentZoom > 2) {
+        lightboxImg.style.imageRendering = 'crisp-edges';
+    } else {
+        lightboxImg.style.imageRendering = 'auto';
+    }
+    
+    // Aplicar transformación con interpolación mejorada
+    lightboxImg.style.transform = `scale3d(${currentZoom}, ${currentZoom}, 1) translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0)`;
     lightboxImg.style.transformOrigin = 'center center';
+    lightboxImg.style.willChange = 'transform';
     
     // Cambiar cursor
     lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
     
-    // Aplicar transición suave
-    lightboxImg.style.transition = 'transform 0.2s ease';
+    // Aplicar transición suave con mejor timing
+    lightboxImg.style.transition = 'transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     setTimeout(() => {
         lightboxImg.style.transition = '';
-    }, 200);
+    }, 150);
+    
+    // Optimizar renderizado y nitidez para zoom alto
+    if (currentZoom > 3) {
+        lightboxImg.style.filter = 'contrast(1.03) brightness(1.01) saturate(1.05)';
+    } else {
+        lightboxImg.style.filter = '';
+    }
 }
 
 function resetZoom() {
@@ -748,9 +830,13 @@ function resetZoom() {
     currentTranslateX = 0;
     currentTranslateY = 0;
     
-    lightboxImg.style.transform = 'scale(1) translate(0px, 0px)';
+    // Resetear propiedades de calidad
+    lightboxImg.style.imageRendering = 'auto';
+    lightboxImg.style.filter = '';
+    lightboxImg.style.transform = 'scale3d(1, 1, 1) translate3d(0px, 0px, 0)';
     lightboxImg.style.cursor = 'default';
-    lightboxImg.style.transition = 'transform 0.3s ease';
+    lightboxImg.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    lightboxImg.style.willChange = 'auto';
     
     setTimeout(() => {
         lightboxImg.style.transition = '';
