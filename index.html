@@ -47,9 +47,9 @@
                         <span class="glitch" data-text="ASOCIACION">Asociacion</span>
                         <span class="glitch" data-text="ILICITA">Ilicita</span>
                     </h1>
-                    <p class="hero-description">BREAKING THE SYSTEM SINCE 2020</p>
+                    <p class="hero-description">SEXO, DROGAS Y PUNK ROCK</p>
                     <div class="hero-buttons">
-                        <button class="btn-primary">
+                        <button class="btn-primary" id="listenNowBtn">
                             <i class="fas fa-play"></i>
                             LISTEN NOW
                         </button>
@@ -214,10 +214,7 @@
                         </div>
                     </div>
                     <div class="band-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-guitar"></i>
-                            <p>BAND PHOTO</p>
-                        </div>
+                        <img src="grupo.png" alt="Asociacion Ilicita Band Photo" class="band-photo">
                     </div>
                 </div>
             </div>
@@ -329,6 +326,13 @@
         </div>
     </div>
 
+    <!-- Audio element for music playback -->
+    <audio id="mainAudio" preload="auto" controls style="display: none;">
+        <source src="1.mp3" type="audio/mpeg">
+        <source src="1.ogg" type="audio/ogg">
+        <source src="1.wav" type="audio/wav">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
 
     <script src="script.js"></script>
 </body>

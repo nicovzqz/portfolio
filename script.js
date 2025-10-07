@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCart();
     initializeLightbox();
     initializeImageModal();
+    initializeAudioPlayer();
     
     // Agregar efectos de sonido simulados
     addSoundEffects();
@@ -194,7 +195,7 @@ function initializeGallery() {
                         item.classList.remove('hidden');
                         // Animación de aparición
                         setTimeout(() => {
-                            item.style.opacity = '1';
+                            item.style.opacity = '0.05';
                             item.style.transform = 'translateY(0)';
                         }, 100);
                     } else {
@@ -861,6 +862,12 @@ function initializeImageModal() {
     const captionText = document.getElementById('imageCaption');
     const closeBtn = document.querySelector('.image-modal-close');
     
+    // Solo inicializar si todos los elementos existen (están en merch.html)
+    if (!modal || !modalImg || !captionText) {
+        console.log('Modal de imagen no encontrado - probablemente no estamos en la página de merch');
+        return;
+    }
+    
     // Agregar event listener a todas las imágenes de productos
     const productImages = document.querySelectorAll('.product-img');
     
@@ -881,21 +888,108 @@ function initializeImageModal() {
     }
     
     // Cerrar modal clickeando fuera de la imagen
-    modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            closeImageModal();
-        }
-    });
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeImageModal();
+            }
+        });
+    }
     
     // Cerrar modal con la tecla ESC
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
+        if (event.key === 'Escape' && modal && modal.style.display === 'block') {
             closeImageModal();
         }
     });
     
     function closeImageModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+}
+
+// ==================== REPRODUCTOR DE AUDIO ====================
+function initializeAudioPlayer() {
+    console.log('Inicializando reproductor de audio...');
+    
+    const listenBtn = document.getElementById('listenNowBtn');
+    const audio = document.getElementById('mainAudio');
+    
+    console.log('Botón encontrado:', !!listenBtn);
+    console.log('Audio encontrado:', !!audio);
+    
+    if (listenBtn && audio) {
+        let isPlaying = false;
+        
+        // Agregar atributos de control de audio
+        audio.volume = 0.7; // Volumen al 70%
+        
+        listenBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Click en botón LISTEN NOW, isPlaying:', isPlaying);
+            
+            if (!isPlaying) {
+                console.log('Intentando reproducir audio...');
+                // Resetear el audio al inicio
+                audio.currentTime = 0;
+                
+                // Reproducir audio
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Audio reproduciéndose correctamente');
+                        isPlaying = true;
+                        // Cambiar el icono y texto del botón
+                        listenBtn.innerHTML = '<i class="fas fa-pause"></i> PAUSE';
+                    }).catch(error => {
+                        console.error('Error al reproducir audio:', error);
+                        alert('Error al reproducir audio. Es posible que el archivo 1.mp3 no exista o no se pueda reproducir.');
+                    });
+                }
+            } else {
+                console.log('Pausando audio...');
+                // Pausar audio
+                audio.pause();
+                isPlaying = false;
+                // Cambiar el icono y texto del botón
+                listenBtn.innerHTML = '<i class="fas fa-play"></i> LISTEN NOW';
+            }
+        });
+        
+        // Cuando termine la canción, resetear el botón
+        audio.addEventListener('ended', function() {
+            console.log('Audio terminado');
+            isPlaying = false;
+            listenBtn.innerHTML = '<i class="fas fa-play"></i> LISTEN NOW';
+        });
+        
+        // Manejar errores de carga
+        audio.addEventListener('error', function(e) {
+            console.error('Error al cargar el audio:', e);
+            console.error('Tipo de error:', e.target.error);
+            alert('No se pudo cargar el archivo 1.mp3. Verifica que el archivo exista en la carpeta del proyecto.');
+        });
+        
+        // Debug: verificar si el audio se puede cargar
+        audio.addEventListener('loadstart', function() {
+            console.log('Iniciando carga del audio...');
+        });
+        
+        audio.addEventListener('canplay', function() {
+            console.log('Audio listo para reproducir');
+        });
+        
+        audio.addEventListener('loadeddata', function() {
+            console.log('Datos del audio cargados');
+        });
+        
+    } else {
+        console.error('No se encontraron los elementos necesarios para el reproductor de audio');
+        if (!listenBtn) console.error('Botón listenNowBtn no encontrado');
+        if (!audio) console.error('Elemento audio mainAudio no encontrado');
     }
 }

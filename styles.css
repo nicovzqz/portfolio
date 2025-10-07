@@ -223,11 +223,12 @@ body {
 
 .hero-title {
     font-family: var(--font-punk);
-    font-size: 4rem;
+    font-size: 8rem;
     line-height: 0.9;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
+    opacity: 0.8;
 }
 
 /* Efecto Glitch */
@@ -745,6 +746,15 @@ section {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--red);
+}
+
+.band-photo {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--red);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
 }
 
 /* Releases Section */
@@ -1705,7 +1715,7 @@ section {
     }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 6rem;
     }
     
     .hero-visual {
@@ -1793,7 +1803,7 @@ section {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 5rem;
     }
     
     .page-title {
