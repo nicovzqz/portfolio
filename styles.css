@@ -609,6 +609,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
+    padding-top: 1rem;
 }
 
 .date-card {
@@ -640,6 +641,143 @@ section {
     transform: none;
     border-color: var(--gray);
     box-shadow: none;
+}
+
+/* Fecha destacada - Orange Bar */
+.date-card.featured-date {
+    background: linear-gradient(145deg, rgba(255, 0, 0, 0.15), rgba(255, 140, 0, 0.1));
+    border: 2px solid var(--red);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3);
+    animation: pulse-featured 2s infinite;
+    position: relative;
+    overflow: visible;
+}
+
+.date-card.featured-date::before {
+    content: "🔥 PRÓXIMO SHOW";
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: var(--red);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.date-card.featured-date:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
+}
+
+.featured-header {
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    border-right: 3px solid var(--neon-green) !important;
+}
+
+.featured-header .date-day {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+    font-size: 3rem !important;
+}
+
+.featured-header .date-month {
+    color: var(--red);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--red);
+}
+
+@keyframes pulse-featured {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(255, 0, 0, 0.5), 0 0 20px rgba(57, 255, 20, 0.3);
+    }
+}
+
+/* Responsive para fecha destacada */
+@media (max-width: 1024px) {
+    .date-card.featured-date::before {
+        top: -8px;
+        right: 10px;
+        padding: 4px 12px;
+        font-size: 0.65rem;
+    }
+    
+    .featured-header .date-day {
+        font-size: 2.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .date-card.featured-date::before {
+        content: "🔥 PRÓXIMO";
+        top: -6px;
+        right: 8px;
+        padding: 3px 10px;
+        font-size: 0.6rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .featured-header {
+        padding: 0.8rem;
+    }
+    
+    .featured-header .date-day {
+        font-size: 2.2rem !important;
+    }
+    
+    .date-card.featured-date:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+}
+
+@media (max-width: 480px) {
+    .date-card.featured-date::before {
+        content: "🔥";
+        top: -5px;
+        right: 5px;
+        padding: 2px 8px;
+        font-size: 0.8rem;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .featured-header {
+        padding: 0.6rem;
+    }
+    
+    .featured-header .date-day {
+        font-size: 1.8rem !important;
+    }
+    
+    .featured-header .date-month {
+        font-size: 0.8rem;
+    }
+    
+    .date-card.featured-date {
+        padding: 1rem;
+    }
+    
+    @keyframes pulse-featured {
+        0%, 100% {
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+        50% {
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5), 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+    }
 }
 
 .date-header {
