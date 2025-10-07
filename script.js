@@ -173,6 +173,7 @@ function initializeGallery() {
         // Crear array de imágenes para el lightbox
         galleryImages = Array.from(galleryItems).map((item, index) => ({
             index: index,
+            src: item.querySelector('.gallery-img')?.src || '',
             title: item.querySelector('.photo-info h3')?.textContent || 'Sin título',
             description: item.querySelector('.photo-info p')?.textContent || 'Sin descripción',
             category: item.getAttribute('data-category')
@@ -513,11 +514,19 @@ function initializeLightbox() {
 
 function openLightbox() {
     const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxDescription = document.getElementById('lightboxDescription');
     
     if (lightbox && galleryImages[currentImageIndex]) {
         const image = galleryImages[currentImageIndex];
+        
+        // Actualizar imagen
+        if (lightboxImg) {
+            lightboxImg.src = image.src;
+            lightboxImg.alt = image.title;
+        }
+        
         lightboxTitle.textContent = image.title;
         lightboxDescription.textContent = image.description;
         
@@ -1096,7 +1105,96 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeImageModal();
     initializeAudioPlayer();
     initializeEventImageModal(); // Función actualizada para manejar todos los eventos con imágenes
+    initializeReleaseAudioPlayers(); // Reproductores de audio para releases
     
     // Agregar efectos de sonido simulados
     addSoundEffects();
 });
+
+// ==================== AUDIO PLAYERS FOR RELEASES ====================
+function initializeReleaseAudioPlayers() {
+    const playButtons = document.querySelectorAll('.play-btn[data-audio]');
+    let currentAudio = null;
+    let currentButton = null;
+    
+    if (playButtons.length > 0) {
+        console.log('Inicializando reproductores de releases:', playButtons.length);
+        
+        playButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const audioFile = this.getAttribute('data-audio');
+                const icon = this.querySelector('i');
+                
+                // Si hay un audio reproduciéndose y es diferente al actual, detenerlo
+                if (currentAudio && currentAudio.src !== window.location.origin + '/' + audioFile) {
+                    currentAudio.pause();
+                    if (currentButton) {
+                        const currentIcon = currentButton.querySelector('i');
+                        currentIcon.className = 'fas fa-play';
+                    }
+                }
+                
+                // Si es el mismo botón, alternar play/pause
+                if (currentButton === this && currentAudio) {
+                    if (currentAudio.paused) {
+                        currentAudio.play().then(() => {
+                            icon.className = 'fas fa-pause';
+                            console.log('Reproduciendo:', audioFile);
+                        }).catch(error => {
+                            console.error('Error al reproducir:', error);
+                            alert(`Error al reproducir ${audioFile}. Verifica que el archivo exista.`);
+                        });
+                    } else {
+                        currentAudio.pause();
+                        icon.className = 'fas fa-play';
+                        console.log('Pausado:', audioFile);
+                    }
+                    return;
+                }
+                
+                // Crear nuevo elemento audio
+                if (audioFile) {
+                    console.log('Cargando archivo:', audioFile);
+                    
+                    currentAudio = new Audio(audioFile);
+                    currentButton = this;
+                    
+                    // Cuando se pueda reproducir
+                    currentAudio.addEventListener('canplay', function() {
+                        console.log('Audio listo para reproducir:', audioFile);
+                    });
+                    
+                    // Cuando termine la canción
+                    currentAudio.addEventListener('ended', function() {
+                        icon.className = 'fas fa-play';
+                        console.log('Audio terminado:', audioFile);
+                        currentAudio = null;
+                        currentButton = null;
+                    });
+                    
+                    // Manejar errores
+                    currentAudio.addEventListener('error', function(e) {
+                        console.error('Error al cargar audio:', e);
+                        alert(`No se pudo cargar ${audioFile}. Verifica que el archivo exista en la carpeta del proyecto.`);
+                        icon.className = 'fas fa-play';
+                        currentAudio = null;
+                        currentButton = null;
+                    });
+                    
+                    // Reproducir
+                    currentAudio.play().then(() => {
+                        icon.className = 'fas fa-pause';
+                        console.log('Reproduciendo:', audioFile);
+                    }).catch(error => {
+                        console.error('Error al reproducir:', error);
+                        alert(`Error al reproducir ${audioFile}. Verifica que el archivo exista.`);
+                    });
+                }
+            });
+        });
+    } else {
+        console.log('No se encontraron botones de play con audio');
+    }
+}
