@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Hamburger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #ff0000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand h1 {
+            color: #ff0000;
+            font-size: 1.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ff0000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+        
+        /* Animaciones del hamburger */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex !important;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(26, 26, 26, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+        }
+        
+        .main {
+            margin-top: 100px;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>TEST HAMBURGER</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link">HOME</a></li>
+                <li><a href="#" class="nav-link">GALLERY</a></li>
+                <li><a href="#" class="nav-link">MERCH</a></li>
+                <li><a href="#" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <h1>Test del Menú Hamburguesa</h1>
+        <p>Redimensiona la ventana o usa herramientas de desarrollador para probar el menú móvil.</p>
+        <p>El hamburger debería aparecer en pantallas menores a 768px.</p>
+        
+        <div style="margin-top: 2rem;">
+            <button onclick="toggleMenu()" style="padding: 1rem; background: #ff0000; color: white; border: none; cursor: pointer;">
+                Forzar Toggle del Menú
+            </button>
+        </div>
+    </main>
+
+    <script>
+        console.log('Script cargado');
+        
+        function initHamburger() {
+            console.log('Inicializando hamburger test...');
+            
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            console.log('Hamburger:', hamburger);
+            console.log('Nav Menu:', navMenu);
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('¡Click en hamburger!');
+                    
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    
+                    console.log('Hamburger active:', hamburger.classList.contains('active'));
+                    console.log('NavMenu active:', navMenu.classList.contains('active'));
+                });
+                
+                console.log('Event listener agregado correctamente');
+            } else {
+                console.error('No se encontraron elementos necesarios');
+            }
+        }
+        
+        function toggleMenu() {
+            console.log('Toggle forzado');
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            }
+        }
+        
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initHamburger);
+        
+        // También inicializar inmediatamente por si acaso
+        initHamburger();
+    </script>
+</body>
+</html>
