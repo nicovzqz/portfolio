@@ -55,7 +55,7 @@
                         </button>
                         <a href="#tour" class="btn-secondary">
                             <i class="fas fa-calendar"></i>
-                            TOUR DATES
+                            FECHAS
                         </a>
                     </div>
                 </div>
@@ -75,37 +75,37 @@
                 <div class="dates-grid">
                     <div class="date-card">
                         <div class="date-header">
-                            <div class="date-day">15</div>
-                            <div class="date-month">NOV</div>
+                            <div class="date-day">16</div>
+                            <div class="date-month">OCT</div>
                         </div>
                         <div class="date-info">
-                            <h3 class="venue">LUNA PARK</h3>
-                            <p class="city">Buenos Aires, Argentina</p>
+                            <h3 class="venue">ORANGE BAR</h3>
+                            <p class="city">San Martin, Buenos Aires</p>
                             <p class="time">21:00 HS</p>
                         </div>
                         <div class="date-action">
-                            <button class="ticket-btn" data-venue="Luna Park">
+                            <button class="ticket-btn gratis-btn" data-venue="ORANGE BAR" data-image="1610.png">
                                 <i class="fas fa-ticket-alt"></i>
-                                COMPRAR
+                                GRATIS
                             </button>
-                            <span class="price">$5000</span>
+                            <span class="price">GRATIS</span>
                         </div>
                     </div>
 
                     <div class="date-card">
                         <div class="date-header">
-                            <div class="date-day">22</div>
-                            <div class="date-month">NOV</div>
+                            <div class="date-day">27</div>
+                            <div class="date-month">SEP</div>
                         </div>
                         <div class="date-info">
-                            <h3 class="venue">MALVINAS ROCK</h3>
-                            <p class="city">Córdoba, Argentina</p>
+                            <h3 class="venue">STRUMMER BAR</h3>
+                            <p class="city">Palermo, CABA</p>
                             <p class="time">20:30 HS</p>
                         </div>
                         <div class="date-action">
-                            <button class="ticket-btn" data-venue="Malvinas Rock">
+                            <button class="ticket-btn strummer-btn" data-venue="STRUMMER BAR" data-image="2709.png">
                                 <i class="fas fa-ticket-alt"></i>
-                                COMPRAR
+                                COMPRAR 
                             </button>
                             <span class="price">$4500</span>
                         </div>
@@ -132,16 +132,16 @@
 
                     <div class="date-card">
                         <div class="date-header">
-                            <div class="date-day">05</div>
-                            <div class="date-month">DIC</div>
+                            <div class="date-day">06</div>
+                            <div class="date-month">SEP</div>
                         </div>
                         <div class="date-info">
-                            <h3 class="venue">ROCK & FELLER</h3>
-                            <p class="city">Rosario, Argentina</p>
+                            <h3 class="venue">MELONIO</h3>
+                            <p class="city">CABA, Argentina</p>
                             <p class="time">21:30 HS</p>
                         </div>
                         <div class="date-action">
-                            <button class="ticket-btn" data-venue="Rock & Feller">
+                            <button class="ticket-btn melonio-btn" data-venue="MELONIO" data-image="0609.png">
                                 <i class="fas fa-ticket-alt"></i>
                                 COMPRAR
                             </button>
@@ -151,16 +151,16 @@
 
                     <div class="date-card">
                         <div class="date-header">
-                            <div class="date-day">12</div>
-                            <div class="date-month">DIC</div>
+                            <div class="date-day">11</div>
+                            <div class="date-month">JUL</div>
                         </div>
                         <div class="date-info">
-                            <h3 class="venue">NICETO CLUB</h3>
-                            <p class="city">Buenos Aires, Argentina</p>
+                            <h3 class="venue">CEMENTO</h3>
+                            <p class="city">Ballester, Buenos Aires</p>
                             <p class="time">23:00 HS</p>
                         </div>
                         <div class="date-action">
-                            <button class="ticket-btn" data-venue="Niceto Club">
+                            <button class="ticket-btn cemento-btn" data-venue="CEMENTO" data-image="1107.png">
                                 <i class="fas fa-ticket-alt"></i>
                                 COMPRAR
                             </button>
@@ -170,16 +170,16 @@
 
                     <div class="date-card">
                         <div class="date-header">
-                            <div class="date-day">20</div>
-                            <div class="date-month">DIC</div>
+                            <div class="date-day">21</div>
+                            <div class="date-month">JUN</div>
                         </div>
                         <div class="date-info">
-                            <h3 class="venue">FESTIVAL DE VERANO</h3>
-                            <p class="city">Mar del Plata, Argentina</p>
-                            <p class="time">19:00 HS</p>
+                            <h3 class="venue">DELLA TESTA BAR</h3>
+                            <p class="city">Villa Bosch, Buenos Aires</p>
+                            <p class="time">21:00 HS</p>
                         </div>
                         <div class="date-action">
-                            <button class="ticket-btn" data-venue="Festival de Verano">
+                            <button class="ticket-btn della-testa-btn" data-venue="DELLA TESTA BAR" data-image="2106.png">
                                 <i class="fas fa-ticket-alt"></i>
                                 COMPRAR
                             </button>
@@ -333,6 +333,14 @@
         <source src="1.wav" type="audio/wav">
         Tu navegador no soporta el elemento de audio.
     </audio>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <span class="image-close">&times;</span>
+            <img id="modalImage" src="" alt="Event Image">
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

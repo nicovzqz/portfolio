@@ -993,3 +993,101 @@ function initializeAudioPlayer() {
         if (!audio) console.error('Elemento audio mainAudio no encontrado');
     }
 }
+
+// ==================== IMAGE MODAL FOR EVENTS WITH IMAGES ====================
+function initializeEventImageModal() {
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeBtn = document.querySelector('.image-close');
+    
+    // Buscar todos los botones que tienen data-image
+    const imageButtons = document.querySelectorAll('[data-image]');
+    
+    if (imageButtons.length > 0 && imageModal && modalImage) {
+        console.log('Inicializando modal de imagen para eventos con imágenes');
+        console.log('Botones encontrados:', imageButtons.length);
+        
+        // Event listener para todos los botones con data-image
+        imageButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const venue = this.getAttribute('data-venue');
+                const imagePath = this.getAttribute('data-image');
+                
+                console.log(`Click en botón de ${venue}`);
+                
+                if (imagePath) {
+                    console.log('Mostrando imagen:', imagePath);
+                    modalImage.src = imagePath;
+                    imageModal.style.display = 'block';
+                    
+                    // Prevenir scroll del body
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    console.error('No se encontró el atributo data-image');
+                }
+            });
+        });
+        
+        // Cerrar modal
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                console.log('Cerrando modal de imagen');
+                imageModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+        
+        // Cerrar modal al hacer clic fuera de la imagen
+        imageModal.addEventListener('click', function(e) {
+            if (e.target === imageModal) {
+                console.log('Cerrando modal (click fuera)');
+                imageModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && imageModal.style.display === 'block') {
+                console.log('Cerrando modal (ESC)');
+                imageModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Manejar errores de carga de imagen
+        modalImage.addEventListener('error', function() {
+            console.error('Error al cargar la imagen:', this.src);
+            const imageName = this.src.split('/').pop();
+            alert(`No se pudo cargar la imagen ${imageName}. Verifica que el archivo exista en la carpeta del proyecto.`);
+        });
+        
+        modalImage.addEventListener('load', function() {
+            console.log('Imagen cargada exitosamente:', this.src);
+        });
+        
+    } else {
+        console.log('Elementos del modal de imagen no encontrados en esta página');
+        if (imageButtons.length === 0) console.log('No se encontraron botones con data-image');
+        if (!imageModal) console.log('Modal de imagen no encontrado');
+        if (!modalImage) console.log('Elemento de imagen modal no encontrado');
+    }
+}
+
+// Agregar la inicialización del modal de imagen para eventos al DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeNavigation();
+    initializeTicketModal();
+    initializeGallery();
+    initializeMerchStore();
+    initializeCart();
+    initializeLightbox();
+    initializeImageModal();
+    initializeAudioPlayer();
+    initializeEventImageModal(); // Función actualizada para manejar todos los eventos con imágenes
+    
+    // Agregar efectos de sonido simulados
+    addSoundEffects();
+});
