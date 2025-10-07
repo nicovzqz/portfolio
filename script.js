@@ -1127,24 +1127,26 @@ function initializeReleaseAudioPlayers() {
                 const audioFile = this.getAttribute('data-audio');
                 const icon = this.querySelector('i');
                 
+                console.log('Botón clickeado, archivo:', audioFile);
+                
                 // Si hay un audio reproduciéndose y es diferente al actual, detenerlo
-                if (currentAudio && currentAudio.src !== window.location.origin + '/' + audioFile) {
+                if (currentAudio && currentButton !== this) {
                     currentAudio.pause();
+                    currentAudio.currentTime = 0;
                     if (currentButton) {
                         const currentIcon = currentButton.querySelector('i');
                         currentIcon.className = 'fas fa-play';
                     }
                 }
                 
-                // Si es el mismo botón, alternar play/pause
+                // Si es el mismo botón y hay audio, alternar play/pause
                 if (currentButton === this && currentAudio) {
                     if (currentAudio.paused) {
                         currentAudio.play().then(() => {
                             icon.className = 'fas fa-pause';
-                            console.log('Reproduciendo:', audioFile);
+                            console.log('Reanudando:', audioFile);
                         }).catch(error => {
-                            console.error('Error al reproducir:', error);
-                            alert(`Error al reproducir ${audioFile}. Verifica que el archivo exista.`);
+                            console.error('Error al reanudar:', error);
                         });
                     } else {
                         currentAudio.pause();
@@ -1154,44 +1156,52 @@ function initializeReleaseAudioPlayers() {
                     return;
                 }
                 
-                // Crear nuevo elemento audio
-                if (audioFile) {
-                    console.log('Cargando archivo:', audioFile);
-                    
-                    currentAudio = new Audio(audioFile);
-                    currentButton = this;
-                    
-                    // Cuando se pueda reproducir
-                    currentAudio.addEventListener('canplay', function() {
-                        console.log('Audio listo para reproducir:', audioFile);
-                    });
-                    
-                    // Cuando termine la canción
-                    currentAudio.addEventListener('ended', function() {
-                        icon.className = 'fas fa-play';
-                        console.log('Audio terminado:', audioFile);
-                        currentAudio = null;
-                        currentButton = null;
-                    });
-                    
-                    // Manejar errores
-                    currentAudio.addEventListener('error', function(e) {
-                        console.error('Error al cargar audio:', e);
-                        alert(`No se pudo cargar ${audioFile}. Verifica que el archivo exista en la carpeta del proyecto.`);
-                        icon.className = 'fas fa-play';
-                        currentAudio = null;
-                        currentButton = null;
-                    });
-                    
-                    // Reproducir
-                    currentAudio.play().then(() => {
-                        icon.className = 'fas fa-pause';
-                        console.log('Reproduciendo:', audioFile);
-                    }).catch(error => {
-                        console.error('Error al reproducir:', error);
-                        alert(`Error al reproducir ${audioFile}. Verifica que el archivo exista.`);
-                    });
-                }
+                // Crear nuevo elemento audio si no existe o es diferente
+                console.log('Creando nuevo audio para:', audioFile);
+                
+                // Resetear todos los botones a play
+                playButtons.forEach(btn => {
+                    const btnIcon = btn.querySelector('i');
+                    btnIcon.className = 'fas fa-play';
+                });
+                
+                currentAudio = new Audio(audioFile);
+                currentButton = this;
+                
+                // Eventos del audio
+                currentAudio.addEventListener('loadstart', function() {
+                    console.log('Comenzando a cargar:', audioFile);
+                });
+                
+                currentAudio.addEventListener('canplay', function() {
+                    console.log('Audio listo para reproducir:', audioFile);
+                });
+                
+                currentAudio.addEventListener('ended', function() {
+                    icon.className = 'fas fa-play';
+                    console.log('Audio terminado:', audioFile);
+                    currentAudio = null;
+                    currentButton = null;
+                });
+                
+                currentAudio.addEventListener('error', function(e) {
+                    console.error('Error al cargar audio:', e);
+                    console.error('Archivo que falló:', audioFile);
+                    icon.className = 'fas fa-play';
+                    currentAudio = null;
+                    currentButton = null;
+                });
+                
+                // Reproducir inmediatamente
+                currentAudio.play().then(() => {
+                    icon.className = 'fas fa-pause';
+                    console.log('Reproduciendo exitosamente:', audioFile);
+                }).catch(error => {
+                    console.error('Error al reproducir:', error);
+                    icon.className = 'fas fa-play';
+                    currentAudio = null;
+                    currentButton = null;
+                });
             });
         });
     } else {
