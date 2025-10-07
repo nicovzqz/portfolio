@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#1a1a1a">
@@ -496,29 +496,18 @@
     <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <span class="lightbox-close" id="lightboxClose">&times;</span>
-            <div class="lightbox-image" id="lightboxContainer">
-                <img id="lightboxImg" src="" alt="Foto expandida" draggable="false">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-image">
+                <img id="lightboxImg" src="" alt="Foto expandida">
                 <h3 id="lightboxTitle">Título de la foto</h3>
                 <p id="lightboxDescription">Descripción de la foto</p>
             </div>
             <div class="lightbox-nav">
-                <button class="nav-btn prev-btn" id="prevBtn" title="Foto anterior">
+                <button class="nav-btn prev-btn" title="Foto anterior">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="nav-btn next-btn" id="nextBtn" title="Foto siguiente">
+                <button class="nav-btn next-btn" title="Foto siguiente">
                     <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="zoom-controls">
-                <button class="zoom-btn zoom-in" id="zoomInBtn" title="Acercar">
-                    <i class="fas fa-plus"></i>
-                </button>
-                <button class="zoom-btn zoom-out" id="zoomOutBtn" title="Alejar">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button class="zoom-btn zoom-reset" id="zoomResetBtn" title="Restablecer zoom">
-                    <i class="fas fa-expand-arrows-alt"></i>
                 </button>
             </div>
         </div>

@@ -45,10 +45,6 @@ body {
     position: relative;
 }
 
-body.menu-open {
-    overflow: hidden;
-}
-
 
 
 /* Efecto de ruido de fondo */
@@ -185,15 +181,6 @@ body.menu-open {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 10px;
-    position: relative;
-    z-index: 1002;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-}
-
-.hamburger:hover {
-    background: rgba(255, 0, 0, 0.1);
 }
 
 .hamburger span {
@@ -201,9 +188,7 @@ body.menu-open {
     height: 3px;
     background: var(--red);
     margin: 3px 0;
-    transition: all 0.3s ease;
-    display: block;
-    border-radius: 2px;
+    transition: 0.3s;
 }
 
 /* Main content */
@@ -1875,52 +1860,24 @@ section {
     
 }
 
-/* MOBILE LANDSCAPE & TABLET PORTRAIT (481px - 1023px) */
-@media (max-width: 1023px) {
+/* Responsive Design */
+@media (max-width: 768px) {
     .hamburger {
-        display: flex !important;
-        z-index: 1001;
+        display: flex;
     }
     
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 70px;
         flex-direction: column;
-        background: rgba(26, 26, 26, 0.98);
+        background-color: rgba(26, 26, 26, 0.95);
         width: 100%;
         text-align: center;
-        transition: all 0.3s ease;
+        transition: 0.3s;
         box-shadow: var(--shadow-dark);
         padding: 2rem 0;
         border-top: 2px solid var(--red);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        height: calc(100vh - 80px);
-        overflow-y: auto;
-        z-index: 1000;
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-}
-    
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 80px;
-        flex-direction: column;
-        background: rgba(26, 26, 26, 0.98);
-        width: 100%;
-        text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-dark);
-        padding: 2rem 0;
-        border-top: 2px solid var(--red);
-        backdrop-filter: blur(10px);
-        height: calc(100vh - 80px);
-        overflow-y: auto;
     }
     
     .nav-menu.active {
