@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mobile Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+        }
+        
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #ff0000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-brand h1 {
+            color: #ff0000;
+            font-size: 1.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ff0000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        @media (max-width: 1024px) {
+            .hamburger {
+                display: flex !important;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(26, 26, 26, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                padding: 2rem 0;
+                height: calc(100vh - 70px);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0 !important;
+            }
+            
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+        }
+        
+        .main {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+        
+        .status {
+            background: #333;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>TEST MOBILE</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link">HOME</a></li>
+                <li><a href="#" class="nav-link">GALLERY</a></li>
+                <li><a href="#" class="nav-link">MERCH</a></li>
+                <li><a href="#" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <h1>Test del Menú Mobile</h1>
+        
+        <div class="status">
+            <h3>Estado del Menú:</h3>
+            <p id="menuStatus">Cerrado</p>
+        </div>
+        
+        <div class="status">
+            <h3>Tamaño de Pantalla:</h3>
+            <p id="screenSize"></p>
+        </div>
+        
+        <div class="status">
+            <h3>Elementos Encontrados:</h3>
+            <p id="elementsStatus"></p>
+        </div>
+        
+        <button onclick="forceToggle()" style="background: #ff0000; color: white; padding: 1rem; border: none; margin: 1rem 0; cursor: pointer;">
+            Forzar Toggle del Menú
+        </button>
+        
+        <div style="height: 2000px; background: linear-gradient(to bottom, #000, #333);">
+            <p style="padding: 2rem;">Contenido largo para probar scroll...</p>
+        </div>
+    </main>
+
+    <script>
+        console.log('Script iniciado');
+        
+        function updateStatus() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            document.getElementById('screenSize').textContent = `${window.innerWidth}x${window.innerHeight}`;
+            
+            if (hamburger && navMenu) {
+                document.getElementById('elementsStatus').textContent = 'Hamburger y NavMenu encontrados ✓';
+                document.getElementById('menuStatus').textContent = navMenu.classList.contains('active') ? 'Abierto' : 'Cerrado';
+            } else {
+                document.getElementById('elementsStatus').textContent = 'ERROR: Elementos no encontrados ✗';
+            }
+        }
+        
+        function initMobileMenu() {
+            console.log('Inicializando menú mobile...');
+            
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            console.log('Elementos:', { hamburger, navMenu, navLinksCount: navLinks.length });
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('¡Click en hamburger!');
+                    
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    
+                    updateStatus();
+                    
+                    console.log('Estado:', {
+                        hamburgerActive: hamburger.classList.contains('active'),
+                        navMenuActive: navMenu.classList.contains('active')
+                    });
+                });
+                
+                // Cerrar al hacer click en enlaces
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        updateStatus();
+                    });
+                });
+                
+                console.log('Event listeners configurados correctamente');
+            } else {
+                console.error('No se encontraron elementos necesarios');
+            }
+        }
+        
+        function forceToggle() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                updateStatus();
+                console.log('Toggle forzado');
+            }
+        }
+        
+        // Actualizar estado en resize
+        window.addEventListener('resize', updateStatus);
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            initMobileMenu();
+            updateStatus();
+        });
+        
+        // También inicializar inmediatamente
+        initMobileMenu();
+        updateStatus();
+    </script>
+</body>
+</html>

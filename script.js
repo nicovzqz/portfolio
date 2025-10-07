@@ -24,13 +24,39 @@ function initializeNavigation() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    console.log('Elementos encontrados:', {
+        hamburger: hamburger,
+        navMenu: navMenu,
+        navLinksCount: navLinks.length
+    });
+
     if (hamburger && navMenu) {
-        // Toggle del menú hamburguesa
-        hamburger.addEventListener('click', function() {
+        console.log('Configurando hamburger menu...');
+        
+        // Función para toggle del menú
+        function toggleMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Toggle menu triggered!');
+            
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
+            
+            console.log('Estado después del click:', {
+                hamburgerActive: hamburger.classList.contains('active'),
+                navMenuActive: navMenu.classList.contains('active'),
+                bodyMenuOpen: document.body.classList.contains('menu-open')
+            });
+        }
+        
+        // Eventos para click y touch
+        hamburger.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            console.log('Touch start en hamburger!');
         });
+        hamburger.addEventListener('touchend', toggleMenu);
 
         // Cerrar menú al hacer click en un enlace
         navLinks.forEach(link => {
