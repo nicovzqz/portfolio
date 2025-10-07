@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Hamburger - Asociacion Ilicita</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>ASOCIACION ILICITA</h1>
+                <span class="subtitle">PUNK ROCK BAND</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">HOME</a></li>
+                <li><a href="gallery.html" class="nav-link">GALLERY</a></li>
+                <li><a href="merch.html" class="nav-link">MERCH</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main" style="padding: 2rem;">
+        <h1>Debug del Menú Hamburger</h1>
+        
+        <div style="background: #333; padding: 1rem; margin: 1rem 0; border-radius: 8px;">
+            <h3>Estado del Debug:</h3>
+            <p><strong>Hamburger encontrado:</strong> <span id="hamburgerFound">No</span></p>
+            <p><strong>NavMenu encontrado:</strong> <span id="navMenuFound">No</span></p>
+            <p><strong>JavaScript cargado:</strong> <span id="jsLoaded">No</span></p>
+            <p><strong>Event listener añadido:</strong> <span id="listenerAdded">No</span></p>
+            <p><strong>Hamburger visible:</strong> <span id="hamburgerVisible">No</span></p>
+            <p><strong>Pantalla:</strong> <span id="screenSize"></span></p>
+        </div>
+
+        <div style="background: #444; padding: 1rem; margin: 1rem 0; border-radius: 8px;">
+            <h3>Log de Eventos:</h3>
+            <div id="eventLog" style="font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto;"></div>
+        </div>
+
+        <button onclick="manualToggle()" style="background: #ff0000; color: white; padding: 1rem; border: none; cursor: pointer; border-radius: 4px; margin: 1rem 0;">
+            🔧 Toggle Manual
+        </button>
+
+        <button onclick="testHamburger()" style="background: #00ff00; color: black; padding: 1rem; border: none; cursor: pointer; border-radius: 4px; margin: 1rem 0;">
+            🧪 Test Hamburger
+        </button>
+    </main>
+
+    <script>
+        let logs = [];
+        
+        function addLog(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logs.unshift(`[${timestamp}] ${message}`);
+            if (logs.length > 10) logs = logs.slice(0, 10);
+            
+            const logDiv = document.getElementById('eventLog');
+            if (logDiv) {
+                logDiv.innerHTML = logs.join('<br>');
+            }
+            console.log(`🔍 ${message}`);
+        }
+        
+        function updateStatus() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            document.getElementById('hamburgerFound').textContent = hamburger ? 'Sí ✅' : 'No ❌';
+            document.getElementById('navMenuFound').textContent = navMenu ? 'Sí ✅' : 'No ❌';
+            document.getElementById('jsLoaded').textContent = 'Sí ✅';
+            document.getElementById('screenSize').textContent = `${window.innerWidth}x${window.innerHeight}`;
+            
+            if (hamburger) {
+                const style = window.getComputedStyle(hamburger);
+                document.getElementById('hamburgerVisible').textContent = 
+                    style.display !== 'none' ? 'Sí ✅' : 'No ❌';
+            }
+        }
+        
+        function manualToggle() {
+            addLog('🔧 Toggle manual iniciado');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                addLog(`✅ Toggle completado - Menu ${navMenu.classList.contains('active') ? 'ABIERTO' : 'CERRADO'}`);
+            } else {
+                addLog('❌ Error: No se encontraron elementos');
+            }
+        }
+        
+        function testHamburger() {
+            addLog('🧪 Iniciando test completo');
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (!hamburger) {
+                addLog('❌ ERROR: Hamburger no encontrado');
+                return;
+            }
+            
+            if (!navMenu) {
+                addLog('❌ ERROR: NavMenu no encontrado');
+                return;
+            }
+            
+            // Simular click
+            addLog('📱 Simulando click en hamburger...');
+            const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            
+            hamburger.dispatchEvent(clickEvent);
+            addLog('✅ Evento click enviado');
+        }
+        
+        // Inicialización personalizada
+        function initCustomNavigation() {
+            addLog('🚀 Inicializando navegación personalizada');
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                addLog('✅ Elementos encontrados correctamente');
+                
+                hamburger.addEventListener('click', function(e) {
+                    addLog('🖱️ CLICK DETECTADO en hamburger!');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                    
+                    addLog(`🎯 Estado: ${navMenu.classList.contains('active') ? 'ABIERTO' : 'CERRADO'}`);
+                });
+                
+                document.getElementById('listenerAdded').textContent = 'Sí ✅';
+                addLog('✅ Event listener añadido correctamente');
+            } else {
+                addLog('❌ ERROR: Elementos no encontrados');
+            }
+        }
+        
+        // Ejecutar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog('📄 DOM cargado');
+            updateStatus();
+            initCustomNavigation();
+        });
+        
+        // También ejecutar inmediatamente
+        setTimeout(() => {
+            addLog('⏰ Ejecutando inicialización de respaldo');
+            updateStatus();
+            initCustomNavigation();
+        }, 100);
+        
+        // Actualizar estado en resize
+        window.addEventListener('resize', updateStatus);
+        setInterval(updateStatus, 2000);
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

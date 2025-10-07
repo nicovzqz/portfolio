@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Gallery - ASOCIACION ILICITA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Black+Ops+One&family=Rubik+Distressed:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="gallery-page">
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>ASOCIACION ILICITA</h1>
+                <span class="subtitle">PUNK ROCK BAND</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">HOME</a></li>
+                <li><a href="gallery.html" class="nav-link active">GALLERY</a></li>
+                <li><a href="merch.html" class="nav-link">MERCH</a></li>
+                <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main gallery-main">
+        <section class="gallery-hero">
+            <div class="container">
+                <h1 class="page-title">
+                    <span class="glitch" data-text="GALLERY">GALLERY</span>
+                </h1>
+                <p class="page-subtitle">MOMENTOS ÉPICOS DEL UNDERGROUND</p>
+            </div>
+        </section>
+
+        <section class="gallery-filters">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">TODAS</button>
+                    <button class="filter-btn" data-filter="live">EN VIVO</button>
+                    <button class="filter-btn" data-filter="backstage">BACKSTAGE</button>
+                    <button class="filter-btn" data-filter="studio">ESTUDIO</button>
+                    <button class="filter-btn" data-filter="fans">FANS</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="photo-gallery">
+            <div class="container">
+                <div class="gallery-grid">
+                    <!-- Live Photos -->
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh1.png" alt="Luna Park 2024" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Strummer BAR</h3>
+                                    <p>Palermo - Junio 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh2.jpg" alt="Malvinas Rock" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Strummer BAR</h3>
+                                    <p>Palermo - Octubre 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh3.png" alt="Groove Club" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Pablo</h3>
+                                    <p>Palermo - Strummer BAR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backstage Photos -->
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <img src="fotos/sh4.jpg" alt="Pre-Show" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Matias</h3>
+                                    <p>Palermo - Strummer 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <img src="fotos/sh5.png" alt="After Show" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Zeky</h3>
+                                    <p>Palermo - Strummer BAR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Studio Photos -->
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <img src="fotos/sh6.jpg" alt="Grabación" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Nahuel</h3>
+                                    <p>Palermo - Strummer 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <img src="fotos/sh7.png" alt="Mixing" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Tocando</h3>
+                                    <p>Palermo - Strummer 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fans Photos -->
+                    <div class="gallery-item" data-category="fans">
+                        <div class="photo-card">
+                            <img src="fotos/sh8.jpg" alt="Mosh Pit" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Punk Rock</h3>
+                                    <p>Palermo - Strummer BAR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="fans">
+                        <div class="photo-card">
+                            <img src="fotos/sh9.png" alt="Meet & Greet" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Matias</h3>
+                                    <p>Palermo - Strummer BAR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh10.jpg" alt="Festival" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Festival de Punk</h3>
+                                    <p>CABA - Buenos Aires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <img src="fotos/sh11.png" alt="Setup" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Escenario</h3>
+                                    <p>En el escenario</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <img src="fotos/sh12.jpg" alt="Master" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>En vivo</h3>
+                                    <p>En vivo Tocando</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fotos adicionales -->
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh13.png" alt="En vivo" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Show Épico</h3>
+                                    <p>Buenos Aires - 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh14.jpg" alt="Concierto" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Energía Punk</h3>
+                                    <p>CABA - 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <img src="fotos/sh15.png" alt="Backstage" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Tocando</h3>
+                                    <p>En el show</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh16.jpg" alt="Performance" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Momento</h3>
+                                    <p>Strummer BAR - 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="fans">
+                        <div class="photo-card">
+                            <img src="fotos/sh17.jpg" alt="Público" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Matias</h3>
+                                    <p>CABA - Buenos Aires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh18.jpg" alt="Show" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Noche Punk</h3>
+                                    <p>CABA - 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="studio">
+                        <div class="photo-card">
+                            <img src="fotos/sh19.jpg" alt="Estudio" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Pablo</h3>
+                                    <p>En vivo - 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="backstage">
+                        <div class="photo-card">
+                            <img src="fotos/sh20.png" alt="Backstage" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Nahuel</h3>
+                                    <p>CABA - Buenos Aires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="live">
+                        <div class="photo-card">
+                            <img src="fotos/sh21.jpg" alt="Concierto" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Fuego en el Escenario</h3>
+                                    <p>Strummer BAR - 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="fans">
+                        <div class="photo-card">
+                            <img src="fotos/sh22.jpg" alt="Fans" class="gallery-img">
+                            <div class="photo-overlay">
+                                <button class="view-btn" title="Ver foto completa">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="photo-info">
+                                    <h3>Conexión con Fans</h3>
+                                    <p>Encuentro memorable</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="title-graffiti">VIDEOS</span>
+                    <div class="title-underline"></div>
+                </h2>
+                
+                <div class="videos-grid">
+                    <div class="video-card embedded">
+                        <div class="video-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/r8A8RCeIPKU" 
+                                title="TE VEO PASAR - En Vivo Strummer Bar"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>TE VEO PASAR - En Vivo Strummer Bar</h3>
+                            <p>2.1M visualizaciones</p>
+                        </div>
+                    </div>
+
+                    <div class="video-card embedded">
+                        <div class="video-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/sXGV0JfMyww" 
+                                title="NO ME HABLES - En Vivo Strummer Bar"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>NO ME HABLES - En Vivo Strummer Bar</h3>
+                            <p>850K visualizaciones</p>
+                        </div>
+                    </div>
+
+                    <div class="video-card embedded">
+                        <div class="video-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/AtunBDOH-wM" 
+                                title="ESPERO QUE - En Vivo Strummer Bar"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ESPERO QUE - En Vivo Strummer Bar</h3>
+                            <p>425K visualizaciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ASOCIACION ILICITA</h3>
+                    <p>The sound of rebellion</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Spotify"><i class="fab fa-spotify"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>NAVIGATION</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="merch.html">Merchandise</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-envelope"></i> booking@asociacionilicita.com</p>
+                    <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Asociacion Ilicita. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-zoom-controls">
+                <button class="zoom-btn zoom-in-btn" title="Zoom In">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="zoom-btn zoom-out-btn" title="Zoom Out">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="zoom-btn zoom-reset-btn" title="Reset Zoom">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <div class="hd-loading-indicator" id="hdLoadingIndicator">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Cargando HD</span>
+                </div>
+            </div>
+            <div class="lightbox-image" id="lightboxImageContainer">
+                <img id="lightboxImg" src="" alt="Foto expandida">
+                <h3 id="lightboxTitle">Título de la foto</h3>
+                <p id="lightboxDescription">Descripción de la foto</p>
+            </div>
+            <div class="lightbox-nav">
+                <button class="nav-btn prev-btn" title="Foto anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn next-btn" title="Foto siguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
