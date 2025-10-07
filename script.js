@@ -1000,8 +1000,8 @@ function initializeEventImageModal() {
     const modalImage = document.getElementById('modalImage');
     const closeBtn = document.querySelector('.image-close');
     
-    // Buscar todos los botones que tienen data-image
-    const imageButtons = document.querySelectorAll('[data-image]');
+    // Buscar solo los botones de tickets que tienen data-image
+    const imageButtons = document.querySelectorAll('.ticket-btn[data-image]');
     
     if (imageButtons.length > 0 && imageModal && modalImage) {
         console.log('Inicializando modal de imagen para eventos con imágenes');
@@ -1010,6 +1010,11 @@ function initializeEventImageModal() {
         // Event listener para todos los botones con data-image
         imageButtons.forEach(button => {
             button.addEventListener('click', function(e) {
+                // Solo procesar si es realmente un botón de ticket
+                if (!this.classList.contains('ticket-btn')) {
+                    return;
+                }
+                
                 e.preventDefault();
                 
                 const venue = this.getAttribute('data-venue');
@@ -1017,7 +1022,8 @@ function initializeEventImageModal() {
                 
                 console.log(`Click en botón de ${venue}`);
                 
-                if (imagePath) {
+                // Validar que la imagen tenga extensión válida
+                if (imagePath && (imagePath.endsWith('.png') || imagePath.endsWith('.jpg') || imagePath.endsWith('.jpeg') || imagePath.endsWith('.gif'))) {
                     console.log('Mostrando imagen:', imagePath);
                     modalImage.src = imagePath;
                     imageModal.style.display = 'block';
@@ -1025,7 +1031,7 @@ function initializeEventImageModal() {
                     // Prevenir scroll del body
                     document.body.style.overflow = 'hidden';
                 } else {
-                    console.error('No se encontró el atributo data-image');
+                    console.error('Archivo de imagen no válido o no encontrado:', imagePath);
                 }
             });
         });
@@ -1061,7 +1067,10 @@ function initializeEventImageModal() {
         modalImage.addEventListener('error', function() {
             console.error('Error al cargar la imagen:', this.src);
             const imageName = this.src.split('/').pop();
-            alert(`No se pudo cargar la imagen ${imageName}. Verifica que el archivo exista en la carpeta del proyecto.`);
+            // Solo mostrar alerta si es realmente un archivo de imagen
+            if (imageName && (imageName.endsWith('.png') || imageName.endsWith('.jpg') || imageName.endsWith('.jpeg') || imageName.endsWith('.gif'))) {
+                alert(`No se pudo cargar la imagen ${imageName}. Verifica que el archivo exista en la carpeta del proyecto.`);
+            }
         });
         
         modalImage.addEventListener('load', function() {
